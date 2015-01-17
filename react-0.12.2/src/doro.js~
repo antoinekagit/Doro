@@ -1,0 +1,43 @@
+var DeckCard = React.createClass({
+    render: function () {
+	return (
+	    <li>{this.props.id}</li>
+	);
+    }
+});
+
+var DeckList = React.createClass({
+    render: function () {
+	return (
+	    <ul className="DeckList" >
+	        DeckList.
+	    </ul>
+	);
+    }				
+});
+
+var AjouterCarte = React.createClass({
+    render: function () {
+	return (
+	    <div className="AjouterCarte" >
+	        Ajouter Carte.
+	    </div>
+	);
+    }				
+});
+
+var DeckBox = React.createClass({
+    render: function () {
+	return (
+	    <div className="DeckBox" >
+		<DeckList />
+		<AjouterCarte />
+	    </div>
+	);
+    }
+});
+
+React.render(
+    <DeckBox />,
+    document.getElementById("content")
+);

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Doro</title>
+    <meta charset="UTF-8" />
+
+    <script src="build/react.js" ></script>
+    <script src="build/JSXTransformer.js" ></script>
+    <script src="build/jquery-2.1.3.min.js" ></script>
+
+  </head>
+  <body>
+
+    <h1>Doro</h1>
+    <h2><i>Constructeur de decks Yugioh</i></h2>
+    <div id="content" ></div>
+    <script type="text/jsx" src="src/doro.js" ></script>
+  </body>
+</html>
