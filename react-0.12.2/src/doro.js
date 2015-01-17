@@ -3,14 +3,9 @@
     "id": 2,
     "cards": 
 [
-{
-"id": 0,
+{"id": 0,
 "name": "Lucky Chance", 
-"img": "http://img3.wikia.nocookie.net/__cb20120720012414/yugioh/images/thumb/4/4f/LuckyChance-LODT-EN-C-UE.png/300px-LuckyChance-LODT-EN-C-UE.png"},
-{
-"id": 1,
-"name": "Tour Of Doom", 
-"img": "http://img2.wikia.nocookie.net/__cb20120720012521/yugioh/images/thumb/b/b5/TourofDoom-LODT-EN-C-UE.png/300px-TourofDoom-LODT-EN-C-UE.png"}
+"img": "http://img3.wikia.nocookie.net/__cb20120720012414/yugioh/images/thumb/4/4f/LuckyChance-LODT-EN-C-UE.png/300px-LuckyChance-LODT-EN-C-UE.png"}
 ]
 }
 */
@@ -65,7 +60,7 @@ var AjouterCarte = React.createClass({
 var DeckBox = React.createClass({
     loadCards: function () {
 	$.ajax({
-	    url: this.props.url,
+	    url: "cards.json",
 	    dataType: "json",
 	    success: function (data) {
 		this.setState({data: data});
@@ -124,3 +119,5 @@ React.render(
     <DeckBox url="cards.json" pollInterval={2000} />,
     document.getElementById("content")
 );
+
+console.log("react");
