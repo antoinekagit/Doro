@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "cards": 
+[
+{
+"id": 0,
+"name": "Lucky Chance", 
+"img": "Lucky_Chance.png"},
+{
+"id": 1,
+"name": "Tour Of Doom", 
+"img": "Tour_Of_Doom.png" }
+]
+}
