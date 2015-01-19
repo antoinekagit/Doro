@@ -60,38 +60,34 @@ var AjouterCarte = React.createClass({
 var DeckBox = React.createClass({
     loadCards: function () {
 	$.ajax({
-	    url: "cards.json",
+	    url: this.props.urlCards,
 	    dataType: "json",
 	    success: function (data) {
 		this.setState({data: data});
 	    }.bind(this),
 	    error: function (xhr, status, err) {
-		console.error(this.props.url, status, err.toString());
+		console.error(this.props.urlCards, status, err.toString());
 	    }.bind(this)
 	});
     },
     handleCardSubmit: function (card) {
-	var data = this.state.data,
-	    newCards = data.cards.concat([card]),
-	    newData = {id: (data.id + 1), cards: newCards};
-	this.setState({data: newData});
 	$.ajax({
 	    isLocal: true,
-	    url: "coucou.json",
+	    url: this.props.urlCardsAdd,
 	    dataType: "json",
-	    type: "PUT",
-	    data: newData,
+	    type: "GET",
+	    data: card,
 	    success: function (data) {
 		console.log(data);
 		this.setState({data: data});
 	    }.bind(this),
 	    error: function (xhr, status, err) {
-		console.error(this.props.url, status, err.toString());
+		console.error(this.props.urlCardsAdd, status, err.toString());
 	    }.bind(this)
 	});
     },
     getInitialState: function () {
-	return {data: {id: 0, cards: []}}
+	return {data: {id: 0, cards: [], decks: []}}
     },
     componentDidMount: function () {
 	this.loadCards();
@@ -116,7 +112,10 @@ var DeckBox = React.createClass({
 });
 
 React.render(
-    <DeckBox url="cards.json" pollInterval={2000} />,
+    <DeckBox 
+      urlCards="http://127.0.0.1:8001/cards"
+      urlCardsAdd="http://127.0.0.1:8001/cards-add"
+      pollInterval={2000} />,
     document.getElementById("content")
 );
 
