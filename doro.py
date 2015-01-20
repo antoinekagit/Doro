@@ -4,12 +4,13 @@
 import SimpleHTTPServer
 import SocketServer
 import json
+import webbrowser
 from os import curdir, sep
 from build.urltree import URLTree
 from os import listdir
+from threading import Thread
 
 PRINT_INFOS = True # TODO : récupérer la valeur en fonction d'un argument d'exécution
-PORT = 8001
 TYPE_HTML = "text/html"
 TYPE_JSON = "application/json"
 TYPE_JS = "text/javascript"
@@ -31,8 +32,9 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         self.mapper.route("/jquery", self.getJQuery, "get")
         self.mapper.route("/jsxt", self.getJSXT, "get")
         self.mapper.route("/dorojs", self.getDoroJS, "get")
+        self.mapper.route("/close", self.close, "get")
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
-
+        
     def getBiblio (self) : 
         try :
             self.send_response(200)
@@ -50,6 +52,10 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def getJQuery (self) : self.getFile("build" + sep + "jquery-2.1.3.min.js", TYPE_JS)
     def getJSXT (self)   : self.getFile("build" + sep + "JSXTransformer.js", TYPE_JS)
     def getDoroJS (self) : self.getFile("src" + sep + "doro.js", TYPE_JS)
+    def close (self) :
+        closer = Thread(target = self.server.shutdown)
+        closer.daemon = True
+        closer.start()
 
     def getFile (self, name, contentType) :
         try :
@@ -73,13 +79,13 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         
 # end DoroServer
 
-httpd = SocketServer.TCPServer(("", PORT), DoroServer)
+httpd = SocketServer.TCPServer(("", 0), DoroServer)
+_, port =  httpd.socket.getsockname()
+safeprint("serving at port " + str(port) + " on 127.0.0.1")
+webbrowser.open_new_tab("http://127.0.0.1:" + str(port) + "/doro")
 
-safeprint("serving at port " + str(PORT) + " on 127.0.0.1")
 try :
-    while True :
-        httpd.handle_request()
+    httpd.serve_forever()
 except KeyboardInterrupt :
-    try : httpd.shutdown()
-    except Exception :
-        pass
+    httpd.shutdown()
+

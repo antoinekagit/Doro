@@ -1,3 +1,5 @@
+(function () {
+
 var BiblioCard = React.createClass({
     render: function () {
 	var alt = "aperçu de : " + this.props.name;
@@ -99,10 +101,23 @@ var BiblioBox = React.createClass({
     }
 });
 
+var port = window.location.port,
+    address = "http://127.0.0.1:" + port;
+
 React.render(
     <BiblioBox 
-      urlBiblio="http://127.0.0.1:8001/biblio"
-      urlBiblioAdd="http://127.0.0.1:8001/biblio-add"
-      pollInterval={2000} />,
+      urlBiblio = {address + "/biblio"}
+      urlBiblioAdd = {address + "/biblio-add"}
+      pollInterval = {2000} />,
     document.getElementById("biblio")
 );
+
+$(window).unload(function(){
+    $.ajax({
+        type: "GET",
+        url: address + "/close",
+        async:false
+    });
+});
+
+}) ();
