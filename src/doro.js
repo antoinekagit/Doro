@@ -5,7 +5,8 @@ var BiblioCard = React.createClass({
 	var alt = "aperçu de : " + this.props.name;
 	return (
 	    <li className="biblioCard" >
-		<img src={this.props.img} title={this.props.name} alt={this.alt} />
+		<img src={"img?name=" + this.props.img} 
+	             title={this.props.name} alt={this.alt} />
 	    </li>
 	);
     }
@@ -53,6 +54,7 @@ var BiblioBox = React.createClass({
 	    url: this.props.urlBiblio,
 	    dataType: "json",
 	    success: function (data) {
+		console.log(data);
 		this.setState({data: data});
 	    }.bind(this),
 	    error: function (xhr, status, err) {
@@ -64,11 +66,10 @@ var BiblioBox = React.createClass({
 	$.ajax({
 	    isLocal: true,
 	    url: this.props.urlBiblioAdd,
+	    data: card,
 	    dataType: "json",
 	    type: "GET",
-	    data: card,
 	    success: function (data) {
-		console.log(data);
 		this.setState({data: data});
 	    }.bind(this),
 	    error: function (xhr, status, err) {
@@ -86,6 +87,7 @@ var BiblioBox = React.createClass({
     render: function () {
 	return (
 	    <div className="biblioBox" >
+		<h2>Bibliothèque</h2>
 		<BiblioList data={this.state.data} />
 		<h3>Ajouter une carte</h3>
 		<BiblioAdd onCardSubmit={this.handleCardSubmit} />
@@ -106,18 +108,10 @@ var port = window.location.port,
 
 React.render(
     <BiblioBox 
-      urlBiblio = {address + "/biblio"}
-      urlBiblioAdd = {address + "/biblio-add"}
+      urlBiblio = "biblio"
+      urlBiblioAdd = "biblio-add"
       pollInterval = {2000} />,
     document.getElementById("biblio")
 );
-
-$(window).unload(function(){
-    $.ajax({
-        type: "GET",
-        url: address + "/close",
-        async:false
-    });
-});
 
 }) ();

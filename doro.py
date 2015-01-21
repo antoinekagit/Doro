@@ -5,46 +5,114 @@ import SimpleHTTPServer
 import SocketServer
 import json
 import webbrowser
+import re
 from os import curdir, sep
-from build.urltree import URLTree
 from os import listdir
 from threading import Thread
+from urllib2 import urlopen, HTTPError
+from urlparse import urlparse, parse_qs
 
 PRINT_INFOS = True # TODO : récupérer la valeur en fonction d'un argument d'exécution
 TYPE_HTML = "text/html"
 TYPE_JSON = "application/json"
 TYPE_JS = "text/javascript"
+TYPE_PNG = "image/png"
 
 def safeprint (m) :
     if PRINT_INFOS :
         print m
 
+biblio = json.load(open("data" + sep + "bibliotheque.json"))
+
+decksPaths = [ f for f in listdir("data" + sep + "decks") if f.endswith(".json") ]
+decks = [ json.load(p) for p in decksPaths]
+
 class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
     def __init__ (self, request, client_address, server) :
-        self.biblio = json.load(open("data" + sep + "bibliotheque.json"))
-        decksPaths = [ f for f in listdir("data" + sep + "decks") if f.endswith(".json") ]
-        self.decks = [ json.load(p) for p in decksPaths]
-        self.mapper = URLTree()
-        self.mapper.route("/doro", self.getDoro, "get")
-        self.mapper.route("/biblio", self.getCards, "get")
-        self.mapper.route("/react", self.getReact, "get")
-        self.mapper.route("/jquery", self.getJQuery, "get")
-        self.mapper.route("/jsxt", self.getJSXT, "get")
-        self.mapper.route("/dorojs", self.getDoroJS, "get")
-        self.mapper.route("/close", self.close, "get")
-        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
-        
+        self.mapRequests = {
+            "/doro":       self.getDoro,
+            "/biblio":     self.getBiblio,
+            "/biblio-add": self.getBiblioAdd,
+            "/react":      self.getReact,
+            "/jquery":     self.getJQuery,
+            "/jsxt":       self.getJSXT,
+            "/dorojs":     self.getDoroJS,
+            "/close":      self.close,
+            "/img":        self.getImg
+            }
+        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
+                                                           client_address, server)
+
     def getBiblio (self) : 
         try :
             self.send_response(200)
             self.send_header("Content-type", TYPE_JSON)
             self.end_headers()
-            json.dumps(self.biblio)
-            safeprint("served biblio") 
+            self.wfile.write(json.dumps(biblio))
+            #safeprint("served biblio") 
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")
+
+    def getBiblioAdd (self, param) :
+        try :
+            url = param["url"][0]
+            print "*", url, "*"
+            req = urlopen(url)
+            if not req.geturl().startswith("http://yugioh.wikia.com/wiki/") :
+                safeprint("not good site")
+                return
+            html = req.read()
+            
+            tableCardPattern = "<table class=\"cardtable\">"
+            imgPattern = "<td class=\"cardtable-cardimage\" rowspan=\"91\"><a href=\""
+            englishPattern = "scope=\"row\">English</th>"
+
+            tableCardStart = html.find(tableCardPattern)
+            if tableCardStart == -1 :
+                print "not a card"
+                return
+
+            imgStart = html.find(imgPattern, tableCardStart) + len(imgPattern)
+            imgEnd = html.find("\"", imgStart)
+
+            englishStart = html.find(englishPattern, imgEnd) + len(englishPattern)
+            englishEnd = html.find(" style=\";\"", englishStart)
+
+            nameStart = html.find(">", englishEnd) + 2
+            nameEnd = html.find("<", nameStart)
+
+            img = html[imgStart:imgEnd]
+            name = html[nameStart:nameEnd]
+            alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name)   
+         
+            for card in iter(biblio["cards"]) :
+                if alias == card["alias"] :
+                    print "already here"
+                    return
+
+            imgFile = open("data" + sep + "img" + sep + alias + ".png", "w")
+            imgFile.write(urlopen(img).read())
+            imgFile.close()
+            
+            card = {"id": biblio["id"], "name": name, "img": alias + ".png",
+                    "alias": alias, "url": url}
+            biblio["id"] += 1
+            biblio["cards"].append(card)
+            
+            biblioFile = open("data" + sep + "bibliotheque.json", "w")
+            biblioFile.write(json.dumps(biblio))
+            biblioFile.close()
+
+            self.getBiblio()
+
+        except HTTPError :
+            self.send_response(404)
+            self.send_header("Content-type", TYPE_JSON)
+            self.end_headers()
+            self.wfile.write("{\"success\": false}")
+            safeprint("url asked not found")
 
     def getDoro (self)   : self.getFile("doro.html", TYPE_HTML)
     def getCards (self)  : self.getBiblio()
@@ -56,6 +124,11 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         closer = Thread(target = self.server.shutdown)
         closer.daemon = True
         closer.start()
+
+    def getImg (self, params) :
+        name = params["name"][0]
+        path = "data" + sep + "img" + sep + re.sub(r"[^.a-zA-Z0-9_-]+", "", name)
+        self.getFile(path, TYPE_PNG)
 
     def getFile (self, name, contentType) :
         try :
@@ -71,11 +144,14 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             safeprint("io error")
 
     def do_GET (self) :
-        method, params = self.mapper.resolve("get", self.path)
-        if method is not None :
-            method()
+        req = urlparse(self.path)
+        args = parse_qs(req.query)
+        
+        if len(args) :
+            self.mapRequests[req.path](args)
         else :
-            safeprint("wrong path : *" + self.path + "*")
+            self.mapRequests[req.path]()
+
         
 # end DoroServer
 
