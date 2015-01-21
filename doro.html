@@ -9,6 +9,16 @@
     <script src="jquery" ></script>
 
     <style type="text/css" >
+      
+      .biblioBox {
+        float: left;
+        width: 69%;
+      }
+      .cardInfoBox {
+        float: right;
+        width: 30%;
+      }
+
       .biblioList {
         padding-left: 0;
       }
@@ -19,7 +29,11 @@
         cursor: pointer;
       }
       .biblioCard img {
-        width: 100px;
+        width: 75px;
+      }
+
+      .cardInfoBox img {
+        width: 350px;
       }
     </style>
 
@@ -28,7 +42,7 @@
 
     <h1>Doro</h1>
     <a href="close" >Quitter</a>
-    <div id="biblio" ></div>
+    <div id="content" ></div>
     <script type="text/jsx" src="dorojs" ></script>
   </body>
 </html>

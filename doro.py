@@ -55,6 +55,11 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.send_error(404, "File not found")
             safeprint("io error")
 
+    def saveBiblio (self) :
+        biblioFile = open("data" + sep + "bibliotheque.json", "w")
+        biblioFile.write(json.dumps(biblio))
+        biblioFile.close()
+        
     def getBiblioAdd (self, param) :
         try :
             url = param["url"][0]
@@ -87,24 +92,20 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             name = html[nameStart:nameEnd]
             alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name)   
          
-            for card in iter(biblio["cards"]) :
-                if alias == card["alias"] :
-                    print "already here"
-                    return
+            if alias in biblio["cardsSet"] :
+                print "already here"
+                return
 
             imgFile = open("data" + sep + "img" + sep + alias + ".png", "w")
             imgFile.write(urlopen(img).read())
             imgFile.close()
             
-            card = {"id": biblio["id"], "name": name, "img": alias + ".png",
-                    "alias": alias, "url": url}
-            biblio["id"] += 1
-            biblio["cards"].append(card)
-            
-            biblioFile = open("data" + sep + "bibliotheque.json", "w")
-            biblioFile.write(json.dumps(biblio))
-            biblioFile.close()
-
+            card = {"id": biblio["nbcards"], "name": name, "imgExt": "png", "url": url}
+            biblio["nbcards"] += 1
+            biblio["cardsSet"][alias] = card
+            biblio["cardsList"].append(alias)
+           
+            self.saveBiblio()
             self.getBiblio()
 
         except HTTPError :
