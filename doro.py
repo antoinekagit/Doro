@@ -128,7 +128,18 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def getImg (self, params) :
         name = params["name"][0]
         path = "data" + sep + "img" + sep + re.sub(r"[^.a-zA-Z0-9_-]+", "", name)
-        self.getFile(path, TYPE_PNG)
+        try :
+            f = open(curdir + sep + path, "rb")
+            self.send_response(200)
+            self.send_header("Content-type", TYPE_PNG)
+            self.end_headers()
+            self.wfile.write(f.read())
+            f.close()
+            safeprint("served " + path) 
+        except IOError :
+            self.send_error(404, "File not found")
+            safeprint("io error")
+
 
     def getFile (self, name, contentType) :
         try :
