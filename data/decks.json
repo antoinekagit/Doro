@@ -1,5 +1,1 @@
-{
-    "decksSet": {},
-    "decksList": [],
-    "id": 0
-}
+{"decksSet": {"Maxime": {"nbcards": 0, "cardsSet": {}, "cardsList": [], "id": 1, "name": "Maxime"}, "Antoine": {"nbcards": 0, "cardsList": [], "id": 0, "name": "Antoine", "cardsSet": {}}}, "nbdecks": 2, "decksList": ["Antoine", "Maxime"]}

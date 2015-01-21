@@ -25,8 +25,6 @@ def safeprint (m) :
 biblio = json.load(open("data" + sep + "bibliotheque.json"))
 decks = json.load(open("data" + sep + "decks.json"))
 
-print decks
-
 class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
     def __init__ (self, request, client_address, server) :
@@ -39,27 +37,59 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/jsxt":       self.getJSXT,
             "/dorojs":     self.getDoroJS,
             "/close":      self.close,
-            "/img":        self.getImg
+            "/img":        self.getImg,
+            "/favicon":    self.getFavicon,
+            "/decks":      self.getDecks,
+            "/decks-add":  self.getDecksAdd
             }
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
 
-    def getBiblio (self) : 
-        try :
-            self.send_response(200)
-            self.send_header("Content-type", TYPE_JSON)
+    def makeheaders (self, code, contenttype = None) :
+            self.send_response(code)
+            if contenttype :
+                self.send_header("Content-type", contenttype)
             self.end_headers()
-            self.wfile.write(json.dumps(biblio))
-            #safeprint("served biblio") 
+        
+    def getJSON (self, j) :
+        try :
+            self.makeheaders(200, TYPE_JSON)
+            self.wfile.write(json.dumps(j))
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")
 
-    def saveBiblio (self) :
-        biblioFile = open("data" + sep + "bibliotheque.json", "w")
-        biblioFile.write(json.dumps(biblio))
-        biblioFile.close()
+    def saveJSON (self, j, name) :
+        f = open(curdir + sep + "data" + sep + name,"w")
+        f.write(json.dumps(j))
+        f.close()
+
+    def getBiblio (self) : self.getJSON(biblio)
+    def getDecks  (self) : self.getJSON(decks)
+
+    def saveBiblio (self) : self.saveJSON(biblio, "bibliotheque.json")
+    def saveDecks  (self) : self.saveJSON(decks, "decks.json")
         
+    def getDecksAdd (self, param) :
+        try :
+            name = param["name"][0]
+            alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name) 
+
+            if alias in decks["decksSet"] :
+                return  
+
+            deck = {"id": decks["nbdecks"], "name": name, "cardsSet": {}, 
+                    "cardsList": [], "nbcards": 0}
+            decks["nbdecks"] += 1
+            decks["decksSet"][alias] = deck
+            decks["decksList"].append(alias)
+
+            self.saveDecks()
+            self.getDecks()
+        except :
+            self.send_error(400, "Name already taken")
+            safeprint("nom deck deja pris")
+
     def getBiblioAdd (self, param) :
         try :
             url = param["url"][0]
@@ -109,9 +139,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.getBiblio()
 
         except HTTPError :
-            self.send_response(404)
-            self.send_header("Content-type", TYPE_JSON)
-            self.end_headers()
+            self.makeheaders(404, TYPE_JSON)
             self.wfile.write("{\"success\": false}")
             safeprint("url asked not found")
 
@@ -126,30 +154,37 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         closer.daemon = True
         closer.start()
 
+    def sendFile (self, f) :
+        self.wfile.write(f.read())
+        f.close()
+
     def getImg (self, params) :
         name = params["name"][0]
         path = "data" + sep + "img" + sep + re.sub(r"[^.a-zA-Z0-9_-]+", "", name)
         try :
             f = open(curdir + sep + path, "rb")
-            self.send_response(200)
-            self.send_header("Content-type", TYPE_PNG)
-            self.end_headers()
-            self.wfile.write(f.read())
-            f.close()
+            self.makeheaders(200, TYPE_PNG)
+            self.sendFile(f)
             safeprint("served " + path) 
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")
 
+    def getFavicon (self) :
+        try :
+            f = open(curdir + sep + "img" + sep + "favicon.png", "rb")
+            self.makeheaders(200, TYPE_PNG)
+            self.sendFile(f)
+            safeprint("served favicon") 
+        except IOError :
+            self.send_error(404, "File not found")
+            safeprint("io error")
 
     def getFile (self, name, contentType) :
         try :
             f = open(curdir + sep + name)
-            self.send_response(200)
-            self.send_header("Content-type", contentType)
-            self.end_headers()
-            self.wfile.write(f.read())
-            f.close()
+            self.makeheaders(200, contentType)
+            self.sendFile(f)
             safeprint("served " + name) 
         except IOError :
             self.send_error(404, "File not found")
@@ -158,7 +193,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def do_GET (self) :
         req = urlparse(self.path)
         args = parse_qs(req.query)
-        
         if len(args) :
             self.mapRequests[req.path](args)
         else :

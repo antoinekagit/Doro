@@ -77,6 +77,65 @@ var BiblioBox = React.createClass({
     }
 });
 
+var DeckInList = React.createClass({
+    render: function () {
+	return (
+	    <li className="deckInList" >
+		<span>{this.props.deck.name} ({this.props.deck.nbcards})</span>
+	    </li>
+	);
+    }
+});
+
+var DecksList = React.createClass({
+    render: function () {
+	var decks = this.props.decks.decksList.map((function (alias) {
+	    var deck = this.props.decks.decksSet[alias];
+	    return (
+		<DeckInList key={deck.id} alias={alias} deck={deck} />
+	    );
+	}).bind(this));
+	return (
+	    <ul className="decksList" >{decks}</ul>
+	);
+    }
+});
+
+var DecksAddForm = React.createClass({
+    onDecksAddSubmit: function (e) {
+	e.preventDefault();
+	var name = this.refs.name.getDOMNode().value.trim();
+	if (! name) { return; }
+	
+	this.props.handleDecksAddSubmit({name: name});
+	this.refs.name.getDOMNode().value = "";	
+    },
+    render: function () {
+	return (
+	    <div className="decksAddForm" >
+		<h3>Créer un deck</h3>
+		<form onSubmit={this.onDecksAddSubmit} >
+		    <input type="text" ref="name" placeholder="nom du deck" />
+	            <input type="submit" value="Créer" />
+		</form>
+	    </div>
+	);
+    }
+});
+
+var DecksBox = React.createClass({
+    render: function() {
+	return (
+	    <div className="decksBox" >
+		<h2>Decks</h2>
+		<DecksList decks={this.props.decks} />
+		<DecksAddForm handleDecksAddSubmit = {this.props.handleDecksAddSubmit}
+		/>
+	    </div>
+	);
+    }
+});
+
 var CardInfoBox = React.createClass({
     render: function () {
 	if (this.props.alias == "") {
@@ -98,7 +157,7 @@ var CardInfoBox = React.createClass({
 });
 
 var DoroBox = React.createClass({
-    loadCards: function () {
+    loadData: function () {
 	$.ajax({
 	    url: this.props.urlBiblio,
 	    dataType: "json",
@@ -107,6 +166,16 @@ var DoroBox = React.createClass({
 	    }.bind(this),
 	    error: function (xhr, status, err) {
 		console.error(this.props.urlBiblio, status, err.toString());
+	    }.bind(this)
+	});
+	$.ajax({
+	    url: this.props.urlDecks,
+	    dataType: "json",
+	    success: function (data) {
+		this.setState({decks: data});
+	    }.bind(this),
+	    error: function (xhr, status, err) {
+		console.error(this.props.urlDecks, status, err.toString());
 	    }.bind(this)
 	});
     },
@@ -133,20 +202,41 @@ var DoroBox = React.createClass({
 	    }});
 	}
     },
+    handleDecksAddSubmit: function (deck) {
+	$.ajax({
+	    isLocal: true,
+	    url: this.props.urlDecksAdd,
+	    data: deck,
+	    dataType: "json",
+	    type: "GET",
+	    success: function (data) {
+		this.setState({decks: data});
+	    }.bind(this),
+	    error: function (xhr, status, err) {
+		console.error(this.props.urlDecksAdd, status, err.toString());
+	    }.bind(this)
+	});
+    },
     getInitialState: function () {
 	return {"cards": {"cardsSet": {}, "cardsList": [], "nbcards": 0},
-	        "cardInfo": {"alias": "", "card": {}}};
+	        "cardInfo": {"alias": "", "card": {}},
+	        "decks": {"decksSet": {}, "decksList": [], "nbdecks": 0}
+	       };
     },
     componentDidMount: function () {
-	this.loadCards();
-	setInterval(this.loadCards, this.props.pollInterval);
+	this.loadData();
+	setInterval(this.loadData, this.props.pollInterval);
     },
     render: function () {
 	return (
 	    <div className="doroBox" >
-		<BiblioBox cards = {this.state.cards}
+		<div className="colGauche" >
+		    <BiblioBox cards = {this.state.cards}
 		           handleCardSubmit = {this.handleCardSubmit}
 		           handleClickCard = {this.handleClickCard} />
+		    <DecksBox decks = {this.state.decks} 
+		           handleDecksAddSubmit = {this.handleDecksAddSubmit} />
+		</div>
 		<CardInfoBox alias = {this.state.cardInfo.alias}
 	                     card = {this.state.cardInfo.card} />
 	    </div>
@@ -161,6 +251,8 @@ React.render(
     <DoroBox
       urlBiblio = "biblio"
       urlBiblioAdd = "biblio-add"
+      urlDecks = "decks"
+      urlDecksAdd = "decks-add"
       pollInterval = {2000} />,
     document.getElementById("content")
 );
