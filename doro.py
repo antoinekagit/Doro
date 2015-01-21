@@ -23,9 +23,9 @@ def safeprint (m) :
         print m
 
 biblio = json.load(open("data" + sep + "bibliotheque.json"))
+decks = json.load(open("data" + sep + "decks.json"))
 
-decksPaths = [ f for f in listdir("data" + sep + "decks") if f.endswith(".json") ]
-decks = [ json.load(p) for p in decksPaths]
+print decks
 
 class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
