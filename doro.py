@@ -40,8 +40,9 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/img":        self.getImg,
             "/favicon":    self.getFavicon,
             "/decks":      self.getDecks,
-            "/decks-add":  self.getDecksAdd
-            }
+            "/decks-add":  self.getDecksAdd,
+            "/deck-add-card": self.getDeckAddCard
+        };
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
 
@@ -70,6 +71,28 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def saveBiblio (self) : self.saveJSON(biblio, "bibliotheque.json")
     def saveDecks  (self) : self.saveJSON(decks, "decks.json")
         
+    def getDeckAddCard (self, params) :
+        deck = params["deck"][0]
+        card = params["card"][0]
+        
+        if not deck in decks["decksSet"]  :
+            self.send_error(400, "deck inexistant")
+            return
+        
+        if not card in biblio["cardsSet"] :
+            self.send_error(400, "carte inexistante")
+            return
+        
+        if len([c for c in decks["decksSet"][deck]["cards"] if c == card]) == 3 :
+            safeprint("deja trois cartes de ce nom dans ce deck")
+            return
+        
+        decks["decksSet"][deck]["nbcards"] += 1
+        decks["decksSet"][deck]["cards"].append(card);
+        
+        self.saveDecks()
+        self.getDecks()
+
     def getDecksAdd (self, param) :
         try :
             name = param["name"][0]
@@ -78,8 +101,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             if alias in decks["decksSet"] :
                 return  
 
-            deck = {"id": decks["nbdecks"], "name": name, "cardsSet": {}, 
-                    "cardsList": [], "nbcards": 0}
+            deck = {"id": decks["nbdecks"], "name": name, "cards": [], "nbcards": 0}
             decks["nbdecks"] += 1
             decks["decksSet"][alias] = deck
             decks["decksList"].append(alias)
