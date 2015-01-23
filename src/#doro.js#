@@ -262,7 +262,7 @@ var CardInfoBox = React.createClass({
 	    <div className="cardInfoBox" >
 		<h2>Carte Infos</h2>
 		<img src={img} title={this.props.card.name} alt={alt} 
-		     onDragStart={this.onDragStart} />
+		     onDragStart={this.onDragStart} o/>
 	    </div>
 	)
     }

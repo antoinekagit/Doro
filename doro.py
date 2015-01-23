@@ -41,7 +41,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/favicon":    self.getFavicon,
             "/decks":      self.getDecks,
             "/decks-add":  self.getDecksAdd,
-            "/deck-add-card": self.getDeckAddCard
+            "/deck-add-card":  self.getDeckAddCard,
+            "/deck-drop-card": self.getDeckDropCard
         };
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
@@ -89,6 +90,24 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         
         decks["decksSet"][deck]["nbcards"] += 1
         decks["decksSet"][deck]["cards"].append(card);
+        
+        self.saveDecks()
+        self.getDecks()
+        
+    def getDeckDropCard (self, params) :
+        deck = params["deck"][0]
+        index = int(params["index"][0])
+        
+        if not deck in decks["decksSet"]  :
+            self.send_error(400, "deck inexistant")
+            return
+        print index, " ", len(decks["decksSet"][deck]["cards"])
+        if index < 0 or index >= len(decks["decksSet"][deck]["cards"]) :
+            self.send_error(400, "index incorrect")
+            return;
+        
+        decks["decksSet"][deck]["nbcards"] -= 1
+        del decks["decksSet"][deck]["cards"][index]
         
         self.saveDecks()
         self.getDecks()
