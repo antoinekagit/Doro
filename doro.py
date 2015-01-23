@@ -42,7 +42,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/decks":      self.getDecks,
             "/decks-add":  self.getDecksAdd,
             "/deck-add-card":  self.getDeckAddCard,
-            "/deck-drop-card": self.getDeckDropCard
+            "/deck-drop-card": self.getDeckDropCard,
+            "/deck-del":   self.getDeckDel
         };
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
@@ -72,6 +73,19 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def saveBiblio (self) : self.saveJSON(biblio, "bibliotheque.json")
     def saveDecks  (self) : self.saveJSON(decks, "decks.json")
         
+    def getDeckDel (self, params) :
+        deckAlias = params["deck"][0]
+
+        if not deckAlias in decks["decksSet"] :
+            self.send_erros(400, "deck inexistant")
+
+        decks["nbdecks"] -= 1
+        del decks["decksSet"][deckAlias]
+        del decks["decksList"][ decks["decksList"].index(deckAlias) ]
+
+        self.getDecks()
+        self.saveDecks()
+
     def getDeckAddCard (self, params) :
         deck = params["deck"][0]
         card = params["card"][0]
@@ -109,8 +123,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         decks["decksSet"][deck]["nbcards"] -= 1
         del decks["decksSet"][deck]["cards"][index]
         
-        self.saveDecks()
         self.getDecks()
+        self.saveDecks()
 
     def getDecksAdd (self, param) :
         try :

@@ -16,7 +16,7 @@ var BiblioCard = React.createClass({
 	return (
 	    <li className="biblioCard" onClick={this.onClick} >
  		<img src={img} title={this.props.card.name} alt={alt} 
-                onDragStart={this.onDragStart} />
+                onDragStart={this.onDragStart} draggable={true} />
 	    </li>
 	);
     }
@@ -103,10 +103,15 @@ var DeckInList = React.createClass({
 	e.preventDefault();
 	this.props.handleDeckSelection(this.props.alias);
     },
+    onDragStart: function (e) {
+	e.dataTransfer.setData("text", JSON.stringify({"type": "deck", 
+						       "alias": this.props.alias}));
+    },
     render: function () {
 	return (
 	    <li className="deckInList" onDragOver={this.onDragOver} 
-                onDrop={this.onDrop} onClick={this.onClick} >
+                onDrop={this.onDrop} onClick={this.onClick} onDragStart={this.onDragStart} 
+		draggable={true} >
 		<span>{this.props.deck.name} ({this.props.deck.nbcards})</span>
 	    </li>
 	);
@@ -224,8 +229,33 @@ var DecksAddForm = React.createClass({
     }
 });
 
+var DeckDelZone = React.createClass({
+    onDragOver: function (e) {
+	e.preventDefault();
+    },
+    onDrop: function (e) {
+	e.preventDefault();
+	// TODO : Ajouter un DIALOG de confirmation
+	var data;
+	try { data = JSON.parse(e.dataTransfer.getData("text")); }
+	catch (err) {}
+
+	if (! data) { return; }
+	if (data.type != "deck") { return; }
+
+	this.props.handleDeckDel(data.alias);
+    },
+    render: function () {
+	return (
+	    <h3 className="deckDelZone" onDragOver={this.onDragOver} onDrop={this.onDrop} >
+		<span>Supprimer<br />un deck</span>
+	    </h3>
+	);
+    }
+});
+
 var DecksBox = React.createClass({
-    render: function() {
+    render: function () {
 	var deck = this.props.decks.decksSet[this.props.deckShow];
 	return (
 	    <div className="decksBox" >
@@ -237,6 +267,7 @@ var DecksBox = React.createClass({
 		<DeckShow deck={deck} alias={this.props.deckShow} cards={this.props.cards}
 		          handleClickCard={this.props.handleClickCard} />
 		<DecksAddForm handleDecksAddSubmit={this.props.handleDecksAddSubmit} />
+		<DeckDelZone handleDeckDel={this.props.handleDeckDel} />
 	    </div>
 	);
     }
@@ -262,7 +293,7 @@ var CardInfoBox = React.createClass({
 	    <div className="cardInfoBox" >
 		<h2>Carte Infos</h2>
 		<img src={img} title={this.props.card.name} alt={alt} 
-		     onDragStart={this.onDragStart} />
+		     onDragStart={this.onDragStart} draggable={true} />
 	    </div>
 	)
     }
@@ -360,6 +391,19 @@ var DoroBox = React.createClass({
     handleDeckSelection: function (deckAlias) {
 	this.setState({deckShow: deckAlias});
     },
+    handleDeckDel: function (deckAlias) {
+	$.ajax({
+	    url: this.props.urlDeckDel,
+	    data: {deck: deckAlias},
+	    dataType: "json", type: "GET",
+	    success: function (data) {
+		this.setState({decks: data});
+	    }.bind(this),
+	    error: function (xhr, status, err) {
+		console.error(this.props.urlDeckDel, status, err.toString());
+	    }.bind(this)
+	});
+    },
     getInitialState: function () {
 	return {"cards": {"cardsSet": {}, "cardsList": [], "nbcards": 0},
 	        "cardInfo": {"alias": "", "card": {}},
@@ -383,7 +427,8 @@ var DoroBox = React.createClass({
 		           handleDecksAddSubmit = {this.handleDecksAddSubmit} 
 		           handleClickCard={this.handleClickCard} cards={this.state.cards} 
 		           handleDeckSelection={this.handleDeckSelection} 
-		           handleDeckDropCard={this.handleDeckDropCard} />
+		           handleDeckDropCard={this.handleDeckDropCard} 
+		           handleDeckDel={this.handleDeckDel} />
 		</div>
 		<CardInfoBox alias = {this.state.cardInfo.alias}
 	                     card = {this.state.cardInfo.card} />
@@ -403,6 +448,7 @@ React.render(
       urlDecksAdd = "decks-add"
       urlDeckAddCard = "deck-add-card"
       urlDeckDropCard = "deck-drop-card"
+      urlDeckDel = "deck-del"
       pollInterval = {2000} />,
     document.getElementById("content")
 );
