@@ -407,7 +407,7 @@ var DoroBox = React.createClass({
 	}
     },
     getInitialState: function () {
-	return {"cards": {"cardsSet": {}, "cardsList": [], "nbcards": 0},
+	return {"cards": {"set": {}, "lists": {"all": [], "monster": [], "}, "nbcards": 0},
 	        "cardInfo": {"alias": "", "card": {}},
 	        "decks": {"decksSet": {}, "decksList": [], "nbdecks": 0},
 		"deckShow": ""
