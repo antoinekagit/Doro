@@ -72,7 +72,7 @@ var BiblioBox = React.createClass({
 		<p>
 		<strong>Aide : </strong> <br />
 		<span>Il faut utiliser les URL du site </span>
-	        <a href="http://yugioh.wikia.com" >yugioh.wikia.com</a> 
+	        <a href="http://yugioh.wikia.com/wiki/Category:Duel_Monsters_cards" >yugioh.wikia.com</a> 
 		<span>.</span> <br /> 
                 <span>par exemple "<a href="http://yugioh.wikia.com/wiki/Lucky_Chance" >http://yugioh.wikia.com/wiki/Lucky_Chance</a>".</span>
 		</p>
