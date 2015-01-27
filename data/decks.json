@@ -1,1 +1,16 @@
-{"nb": 0, "set": {}, "list": []}
+{
+    "list": [
+        "Lol"
+    ],
+    "nb": 1,
+    "set": {
+        "Lol": {
+            "cards": [
+                "FlameSwordsman",
+                "FlameSwordsman"
+            ],
+            "name": "Lol",
+            "nbcards": 2
+        }
+    }
+}

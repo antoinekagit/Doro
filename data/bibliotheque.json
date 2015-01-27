@@ -1,1 +1,45 @@
-{"nb": 5, "lists": {"ajout": ["Blue-EyesWhiteDragon", "Sangan", "TrapHole", "LuckyChance", "FlameSwordsman"]}, "set": {"Sangan": {"imgExt": "png", "url": "http://yugioh.wikia.com/wiki/Sangan", "name": "Sangan"}, "TrapHole": {"imgExt": "png", "url": "http://yugioh.wikia.com/wiki/Trap_Hole", "name": "Trap Hole"}, "Blue-EyesWhiteDragon": {"imgExt": "png", "url": "http://yugioh.wikia.com/wiki/Blue-Eyes_White_Dragon", "name": "Blue-Eyes White Dragon"}, "FlameSwordsman": {"imgExt": "png", "url": "http://yugioh.wikia.com/wiki/Flame_Swordsman", "name": "Flame Swordsman"}, "LuckyChance": {"imgExt": "png", "url": "http://yugioh.wikia.com/wiki/Lucky_Chance", "name": "Lucky Chance"}}}
+{
+    "lists": {
+        "ajout": [
+            "Blue-EyesWhiteDragon",
+            "Sangan",
+            "TrapHole",
+            "LuckyChance",
+            "FlameSwordsman",
+            "Agido"
+        ]
+    },
+    "nb": 6,
+    "set": {
+        "Agido": {
+            "imgExt": "png",
+            "name": "Agido",
+            "url": "http://yugioh.wikia.com/wiki/Agido"
+        },
+        "Blue-EyesWhiteDragon": {
+            "imgExt": "png",
+            "name": "Blue-Eyes White Dragon",
+            "url": "http://yugioh.wikia.com/wiki/Blue-Eyes_White_Dragon"
+        },
+        "FlameSwordsman": {
+            "imgExt": "png",
+            "name": "Flame Swordsman",
+            "url": "http://yugioh.wikia.com/wiki/Flame_Swordsman"
+        },
+        "LuckyChance": {
+            "imgExt": "png",
+            "name": "Lucky Chance",
+            "url": "http://yugioh.wikia.com/wiki/Lucky_Chance"
+        },
+        "Sangan": {
+            "imgExt": "png",
+            "name": "Sangan",
+            "url": "http://yugioh.wikia.com/wiki/Sangan"
+        },
+        "TrapHole": {
+            "imgExt": "png",
+            "name": "Trap Hole",
+            "url": "http://yugioh.wikia.com/wiki/Trap_Hole"
+        }
+    }
+}

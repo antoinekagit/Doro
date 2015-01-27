@@ -67,7 +67,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
     def saveJSON (self, j, name) :
         f = open(curdir + sep + "data" + sep + name,"w")
-        f.write(json.dumps(j))
+        f.write(json.dumps(j, sort_keys=True, indent=4, separators=(',', ': ')))
         f.close()
 
     def getBiblio (self) : self.getJSON(d["biblio"])
@@ -181,7 +181,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             name = html[nameStart:nameEnd]
             alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name)   
          
-            if alias in biblio["cardsSet"] :
+            if alias in d["biblio"]["set"] :
                 self.send_error(400, "déjà dans la bibliothèque")
                 return
 
@@ -192,7 +192,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             card = {"name": name, "imgExt": "png", "url": url}
             d["biblio"]["nb"] += 1
             d["biblio"]["set"][alias] = card
-            d["biblio"]["lists"]["ajout"][alias] = card
+            d["biblio"]["lists"]["ajout"].append(alias)
            
             self.saveBiblio()
             self.getBiblio()
