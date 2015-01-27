@@ -31,7 +31,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
     def __init__ (self, request, client_address, server) :
         self.mapRequests = {
-            "/doro":       self.getDoro,
+            "/doro":       self.getDoroHTML,
             "/biblio":     self.getBiblio,
             "/biblio-add": self.getBiblioAdd,
             "/react":      self.getReact,
@@ -200,8 +200,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         except HTTPError :
             self.send_error(404, "file not found")
 
-    def getDoro (self)   : self.getFile("doro.html", TYPE_HTML)
-    def getCards (self)  : self.getBiblio()
+    def getDoroHTML (self)   : self.getFile("src" + sep + "doro.html", TYPE_HTML)
     def getReact (self)  : self.getFile("build" + sep + "react.js", TYPE_JS)
     def getJQuery (self) : self.getFile("build" + sep + "jquery-2.1.3.min.js", TYPE_JS)
     def getJSXT (self)   : self.getFile("build" + sep + "JSXTransformer.js", TYPE_JS)
