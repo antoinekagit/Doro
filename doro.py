@@ -22,8 +22,10 @@ def safeprint (m) :
     if PRINT_INFOS :
         print m
 
-biblio = json.load(open("data" + sep + "bibliotheque.json"))
-decks = json.load(open("data" + sep + "decks.json"))
+d = {
+    "biblio": json.load(open("data" + sep + "bibliotheque.json")),
+    "decks":  json.load(open("data" + sep + "decks.json"))
+}
 
 class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
@@ -43,7 +45,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/decks-add":  self.getDecksAdd,
             "/deck-add-card":  self.getDeckAddCard,
             "/deck-drop-card": self.getDeckDropCard,
-            "/deck-del":   self.getDeckDel
+            "/deck-del":   self.getDeckDel,
+            "/data":       self.getData
         };
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
@@ -67,21 +70,22 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         f.write(json.dumps(j))
         f.close()
 
-    def getBiblio (self) : self.getJSON(biblio)
-    def getDecks  (self) : self.getJSON(decks)
+    def getBiblio (self) : self.getJSON(d["biblio"])
+    def getDecks  (self) : self.getJSON(d["decks"])
+    def getData   (self) : self.getJSON(d) 
 
-    def saveBiblio (self) : self.saveJSON(biblio, "bibliotheque.json")
-    def saveDecks  (self) : self.saveJSON(decks, "decks.json")
+    def saveBiblio (self) : self.saveJSON(d["biblio"], "bibliotheque.json")
+    def saveDecks  (self) : self.saveJSON(d["decks"], "decks.json")
         
     def getDeckDel (self, params) :
         deckAlias = params["deck"][0]
 
-        if not deckAlias in decks["decksSet"] :
+        if not deckAlias in d["decks"]["set"] :
             self.send_erros(400, "deck inexistant")
 
-        decks["nbdecks"] -= 1
-        del decks["decksSet"][deckAlias]
-        del decks["decksList"][ decks["decksList"].index(deckAlias) ]
+        d["decks"]["nb"] -= 1
+        del d["decks"]["set"][deckAlias]
+        del d["decks"]["list"][ d["decks"]["list"].index(deckAlias) ]
 
         self.getDecks()
         self.saveDecks()
@@ -90,20 +94,20 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         deck = params["deck"][0]
         card = params["card"][0]
         
-        if not deck in decks["decksSet"]  :
+        if not deck in d["decks"]["set"]  :
             self.send_error(400, "deck inexistant")
             return
         
-        if not card in biblio["cardsSet"] :
+        if not card in d["biblio"]["set"] :
             self.send_error(400, "carte inexistante")
             return
         
-        if len([c for c in decks["decksSet"][deck]["cards"] if c == card]) == 3 :
-            safeprint("deja trois cartes de ce nom dans ce deck")
+        if len([c for c in d["decks"]["set"][deck]["cards"] if c == card]) == 3 :
+            self.send_error(400, "deja trois cartes de ce nom dans ce deck")
             return
         
-        decks["decksSet"][deck]["nbcards"] += 1
-        decks["decksSet"][deck]["cards"].append(card);
+        d["decks"]["set"][deck]["nbcards"] += 1
+        d["decks"]["set"][deck]["cards"].append(card);
         
         self.saveDecks()
         self.getDecks()
@@ -112,16 +116,16 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         deck = params["deck"][0]
         index = int(params["index"][0])
         
-        if not deck in decks["decksSet"]  :
+        if not deck in d["decks"]["set"]  :
             self.send_error(400, "deck inexistant")
             return
-        print index, " ", len(decks["decksSet"][deck]["cards"])
-        if index < 0 or index >= len(decks["decksSet"][deck]["cards"]) :
+
+        if index < 0 or index >= len(d["decks"]["set"][deck]["cards"]) :
             self.send_error(400, "index incorrect")
             return;
         
-        decks["decksSet"][deck]["nbcards"] -= 1
-        del decks["decksSet"][deck]["cards"][index]
+        d["decks"]["set"][deck]["nbcards"] -= 1
+        del d["decks"]["set"][deck]["cards"][index]
         
         self.getDecks()
         self.saveDecks()
@@ -131,27 +135,27 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             name = param["name"][0]
             alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name) 
 
-            if alias in decks["decksSet"] :
+            if alias in d["decks"]["set"] :
                 return  
 
-            deck = {"id": decks["nbdecks"], "name": name, "cards": [], "nbcards": 0}
-            decks["nbdecks"] += 1
-            decks["decksSet"][alias] = deck
-            decks["decksList"].append(alias)
+            deck = {"name": name, "cards": [], "nbcards": 0}
+            d["decks"]["nb"] += 1
+            d["decks"]["set"][alias] = deck
+            d["decks"]["list"].append(alias)
 
             self.saveDecks()
             self.getDecks()
+
         except :
-            self.send_error(400, "Name already taken")
-            safeprint("nom deck deja pris")
+            self.send_error(400, "nom déjà pris")
 
     def getBiblioAdd (self, param) :
         try :
             url = param["url"][0]
-            print "*", url, "*"
+
             req = urlopen(url)
             if not req.geturl().startswith("http://yugioh.wikia.com/wiki/") :
-                safeprint("not good site")
+                self.send_error(400, "mauvais site")
                 return
             html = req.read()
             
@@ -161,7 +165,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
             tableCardStart = html.find(tableCardPattern)
             if tableCardStart == -1 :
-                print "not a card"
+                self.send_error(400, "pas une carte")
                 return
 
             imgStart = html.find(imgPattern, tableCardStart) + len(imgPattern)
@@ -178,25 +182,23 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name)   
          
             if alias in biblio["cardsSet"] :
-                print "already here"
+                self.send_error(400, "déjà dans la bibliothèque")
                 return
 
             imgFile = open("data" + sep + "img" + sep + alias + ".png", "w")
             imgFile.write(urlopen(img).read())
             imgFile.close()
             
-            card = {"id": biblio["nbcards"], "name": name, "imgExt": "png", "url": url}
-            biblio["nbcards"] += 1
-            biblio["cardsSet"][alias] = card
-            biblio["cardsList"].append(alias)
+            card = {"name": name, "imgExt": "png", "url": url}
+            d["biblio"]["nb"] += 1
+            d["biblio"]["set"][alias] = card
+            d["biblio"]["lists"]["ajout"][alias] = card
            
             self.saveBiblio()
             self.getBiblio()
 
         except HTTPError :
-            self.makeheaders(404, TYPE_JSON)
-            self.wfile.write("{\"success\": false}")
-            safeprint("url asked not found")
+            self.send_error(404, "file not found")
 
     def getDoro (self)   : self.getFile("doro.html", TYPE_HTML)
     def getCards (self)  : self.getBiblio()
@@ -220,7 +222,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             f = open(curdir + sep + path, "rb")
             self.makeheaders(200, TYPE_PNG)
             self.sendFile(f)
-            safeprint("served " + path) 
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")
@@ -230,7 +231,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             f = open(curdir + sep + "img" + sep + "favicon.png", "rb")
             self.makeheaders(200, TYPE_PNG)
             self.sendFile(f)
-            safeprint("served favicon") 
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")
@@ -240,7 +240,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             f = open(curdir + sep + name)
             self.makeheaders(200, contentType)
             self.sendFile(f)
-            safeprint("served " + name) 
         except IOError :
             self.send_error(404, "File not found")
             safeprint("io error")

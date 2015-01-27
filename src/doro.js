@@ -24,15 +24,13 @@ var BiblioCard = React.createClass({
 
 var BiblioList = React.createClass({
     render: function () {
-	var cardsSet = this.props.cards.cardsSet;
-	var handleClickCard = this.props.handleClickCard;
-	var cards = this.props.cards.cardsList.map(function (alias) {
-	    var card = cardsSet[alias];
+	var cards = this.props.cards.lists.ajout.map(function (alias, index) {
+	    var card = this.props.cards.set[alias];
 	    return (
-		<BiblioCard key={card.id} alias={alias} card={card} 
-                            handleClickCard={handleClickCard} />
+		<BiblioCard key={index} alias={alias} card={card} 
+                            handleClickCard={this.props.handleClickCard} />
 	    );
-	});
+	}.bind(this));
 	return (
 	    <ul className="biblioList" >
 	        {cards}
@@ -120,10 +118,10 @@ var DeckInList = React.createClass({
 
 var DecksList = React.createClass({
     render: function () {
-	var decks = this.props.decks.decksList.map((function (alias) {
-	    var deck = this.props.decks.decksSet[alias];
+	var decks = this.props.decks.list.map((function (alias, index) {
+	    var deck = this.props.decks.set[alias];
 	    return (
-		<DeckInList key={deck.id} alias={alias} deck={deck} 
+		<DeckInList key={index} alias={alias} deck={deck} 
 		            handleDeckAddCard={this.props.handleDeckAddCard} 
 		            handleDeckSelection={this.props.handleDeckSelection} />
 	    );
@@ -188,7 +186,7 @@ var DeckShow = React.createClass({
     render: function () {
 	if (this.props.deck) { 
 	    var cards = this.props.deck.cards.map(function (alias, index) {
-		var card = this.props.cards.cardsSet[alias];
+		var card = this.props.cards.set[alias];
 		return (
 		    <DeckCard key={index} alias={alias} deckAlias={this.props.alias} 
 		              card={card} index={index} 
@@ -256,7 +254,7 @@ var DeckDelZone = React.createClass({
 
 var DecksBox = React.createClass({
     render: function () {
-	var deck = this.props.decks.decksSet[this.props.deckShow];
+	var deck = this.props.decks.set[this.props.deckShow];
 	return (
 	    <div className="decksBox" >
 		<h2>Decks</h2>
@@ -302,23 +300,13 @@ var CardInfoBox = React.createClass({
 var DoroBox = React.createClass({
     loadData: function () {
 	$.ajax({
-	    url: this.props.urlBiblio,
+	    url: this.props.urlData,
 	    dataType: "json",
 	    success: function (data) {
-		this.setState({cards: data});
+		this.setState({cards: data.biblio, decks: data.decks});
 	    }.bind(this),
 	    error: function (xhr, status, err) {
-		console.error(this.props.urlBiblio, status, err.toString());
-	    }.bind(this)
-	});
-	$.ajax({
-	    url: this.props.urlDecks,
-	    dataType: "json",
-	    success: function (data) {
-		this.setState({decks: data});
-	    }.bind(this),
-	    error: function (xhr, status, err) {
-		console.error(this.props.urlDecks, status, err.toString());
+		console.error(this.props.urlData, status, err.toString());
 	    }.bind(this)
 	});
     },
@@ -338,10 +326,10 @@ var DoroBox = React.createClass({
 	});
     },
     handleClickCard: function (card) {
-	if (card.alias in this.state.cards.cardsSet) {
+	if (card.alias in this.state.cards.set) {
 	    this.setState({cardInfo: {
 		alias: card.alias,
-		card: this.state.cards.cardsSet[card.alias]
+		card: this.state.cards.set[card.alias]
 	    }});
 	}
     },
@@ -407,9 +395,15 @@ var DoroBox = React.createClass({
 	}
     },
     getInitialState: function () {
-	return {"cards": {"cardsSet": {}, "cardsList": [], "nbcards": 0},
+	return {"cards": {"set": {}, 
+			  "lists": {"ajout": [], 
+				    "all": [], 
+				    "monster": [], 
+				    "magic": [], 
+				    "trap": []}, 
+			  "nb": 0},
+	        "decks": {"set": {}, "list": [], "nb": 0},
 	        "cardInfo": {"alias": "", "card": {}},
-	        "decks": {"decksSet": {}, "decksList": [], "nbdecks": 0},
 		"deckShow": ""
 	       };
     },
@@ -451,6 +445,7 @@ React.render(
       urlDeckAddCard = "deck-add-card"
       urlDeckDropCard = "deck-drop-card"
       urlDeckDel = "deck-del"
+      urlData = "data"
       pollInterval = {2000} />,
     document.getElementById("content")
 );
