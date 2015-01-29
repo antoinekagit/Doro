@@ -6,8 +6,7 @@ import SocketServer
 import json
 import webbrowser
 import re
-from os import curdir, sep
-from os import listdir
+from os import curdir, sep, remove, listdir
 from threading import Thread
 from urllib2 import urlopen, HTTPError
 from urlparse import urlparse, parse_qs
@@ -46,7 +45,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/deck-add-card":  self.getDeckAddCard,
             "/deck-drop-card": self.getDeckDropCard,
             "/deck-del":   self.getDeckDel,
-            "/data":       self.getData
+            "/data":       self.getData,
+            "/card-del":   self.getCardDel
         };
         SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
@@ -63,7 +63,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.wfile.write(json.dumps(j))
         except IOError :
             self.send_error(404, "File not found")
-            safeprint("io error")
 
     def saveJSON (self, j, name) :
         f = open(curdir + sep + "data" + sep + name,"w")
@@ -76,7 +75,38 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
     def saveBiblio (self) : self.saveJSON(d["biblio"], "bibliotheque.json")
     def saveDecks  (self) : self.saveJSON(d["decks"], "decks.json")
+    def saveData   (self) : 
+        self.saveBiblio()
+        self.saveDecks()
+
+    def getCardDel (self, params) :
+        cardAlias = params["card"][0]
         
+        if not cardAlias in d["biblio"]["set"] :
+            self.send_errors(400, "carte inexistante")
+
+        remove(curdir + sep + "data" + sep + "img" + sep + 
+               cardAlias + "." + d["biblio"]["set"][cardAlias]["imgExt"])
+
+        d["biblio"]["nb"] -= 1
+        del d["biblio"]["set"][cardAlias]
+
+        for i in d["biblio"]["lists"] :
+            try : d["biblio"]["lists"][i].remove(cardAlias)
+            except ValueError : pass
+
+        for i in d["decks"]["set"] :
+            while True :
+                try : 
+                    d["decks"]["set"][i]["cards"].remove(cardAlias)
+                    d["decks"]["set"][i]["nbcards"] -= 1
+                except ValueError : 
+                    safeprint("yo")
+                    break
+
+        self.saveData()
+        self.getData()
+
     def getDeckDel (self, params) :
         deckAlias = params["deck"][0]
 
@@ -102,7 +132,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.send_error(400, "carte inexistante")
             return
         
-        if len([c for c in d["decks"]["set"][deck]["cards"] if c == card]) == 3 :
+        if d["decks"]["set"][deck]["cards"].count(card) == 3 :
             self.send_error(400, "deja trois cartes de ce nom dans ce deck")
             return
         
@@ -162,6 +192,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             tableCardPattern = "<table class=\"cardtable\">"
             imgPattern = "<td class=\"cardtable-cardimage\" rowspan=\"91\"><a href=\""
             englishPattern = "scope=\"row\">English</th>"
+            typesPattern = "Type"
+            typesPattern2 = "<td id=\"\" class=\"cardtablerowdata\" style=\";\">"
 
             tableCardStart = html.find(tableCardPattern)
             if tableCardStart == -1 :
@@ -180,7 +212,20 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             img = html[imgStart:imgEnd]
             name = html[nameStart:nameEnd]
             alias = re.sub(r"[^a-zA-Z0-9_-]+", "", name)   
-         
+            types = []
+
+            typesStart = html.find(typesPattern, nameEnd) + len(typesPattern)
+            typesStart2 = html.find(typesPattern2, typesStart) + len(typesPattern2) + 1
+            typeStart = html.find("<a", typesStart2, typesStart2 + 2) + 2
+
+            while typeStart != -1 :
+                typeStart = html.find(">", typeStart) + 1
+                typeEnd = html.find("</a>", typeStart)
+                types.append(html[typeStart:typeEnd])
+                typeStart = html.find("/<a", typeEnd + 4, typeEnd + 7)
+
+            print types
+
             if alias in d["biblio"]["set"] :
                 self.send_error(400, "déjà dans la bibliothèque")
                 return
@@ -189,7 +234,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             imgFile.write(urlopen(img).read())
             imgFile.close()
             
-            card = {"name": name, "imgExt": "png", "url": url}
+            card = {"name": name, "types": types, "imgExt": "png", "url": url}
             d["biblio"]["nb"] += 1
             d["biblio"]["set"][alias] = card
             d["biblio"]["lists"]["ajout"].append(alias)
@@ -223,7 +268,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.sendFile(f)
         except IOError :
             self.send_error(404, "File not found")
-            safeprint("io error")
 
     def getFavicon (self) :
         try :
@@ -232,7 +276,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.sendFile(f)
         except IOError :
             self.send_error(404, "File not found")
-            safeprint("io error")
 
     def getFile (self, name, contentType) :
         try :
@@ -241,7 +284,6 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             self.sendFile(f)
         except IOError :
             self.send_error(404, "File not found")
-            safeprint("io error")
 
     def do_GET (self) :
         req = urlparse(self.path)

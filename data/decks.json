@@ -1,16 +1,18 @@
 {
     "list": [
-        "Lol"
+        "Antoine"
     ],
     "nb": 1,
     "set": {
-        "Lol": {
+        "Antoine": {
             "cards": [
-                "FlameSwordsman",
-                "FlameSwordsman"
+                "LuckyChance",
+                "Sangan",
+                "Raigeki",
+                "Sangan"
             ],
-            "name": "Lol",
-            "nbcards": 2
+            "name": "Antoine",
+            "nbcards": 4
         }
     }
 }

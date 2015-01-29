@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
 
 var BiblioCard = React.createClass({
@@ -60,6 +62,32 @@ var BiblioAdd = React.createClass({
     }				
 });
 
+var BiblioCardDelZone = React.createClass({
+    onDragOver: function (e) {
+	e.preventDefault();
+    },
+    onDrop: function (e) {
+	e.preventDefault();
+	
+	var data;
+	try { data = JSON.parse(e.dataTransfer.getData("text")); }
+	catch (err) {}
+
+	if (! data) { return; }
+	if (data.type != "card") { return; }
+
+	this.props.handleCardDel(data.alias);
+    },
+    render: function () {
+	return (
+	    <h3 className="biblioCardDelZone" 
+	        onDragOver={this.onDragOver} onDrop={this.onDrop} >
+		<span>Supprimer<br />une carte</span>
+	    </h3>
+	);
+    }
+});
+
 var BiblioBox = React.createClass({
     render: function () {
 	return (
@@ -69,6 +97,7 @@ var BiblioBox = React.createClass({
                             handleClickCard = {this.props.handleClickCard} />
 		<h3>Ajouter une carte</h3>
 		<BiblioAdd handleCardSubmit={this.props.handleCardSubmit} />
+		<BiblioCardDelZone handleCardDel={this.props.handleCardDel} />
 		<p>
 		<strong>Aide : </strong> <br />
 		<span>Il faut utiliser les URL du site </span>
@@ -266,6 +295,12 @@ var DecksBox = React.createClass({
 		          handleClickCard={this.props.handleClickCard} />
 		<DecksAddForm handleDecksAddSubmit={this.props.handleDecksAddSubmit} />
 		<DeckDelZone handleDeckDel={this.props.handleDeckDel} />
+		<p>
+		  <strong>Aide : </strong>
+		  <span>Il faut glisser-déposer les cartes depuis la bibliothèque
+	                jusqu{"'"}au nom du deck dans la liste. La plupart des actions se
+                        font par glisser-déposer.</span>
+	        </p>
 	    </div>
 	);
     }
@@ -394,6 +429,24 @@ var DoroBox = React.createClass({
 	    });
 	}
     },
+    handleCardDel: function (cardAlias) {
+	if (window.confirm("Supprimer la carte ? Elle sera aussi retirée des decks. Cette action est irréversible.")) {
+	    $.ajax({
+		url: this.props.urlCardDel,
+		data: {card: cardAlias},
+		dataType: "json", type: "GET",
+		success: function (data) {
+		    this.setState({cards: data.biblio, decks: data.decks});
+		    if (this.state.cardInfo.alias == cardAlias) {
+			this.setState({cardInfo: {alias: "", card: {}}});
+		    }
+		}.bind(this),
+		error: function (xhr, status, err) {
+		    console.error(this.props.urlCardDel, status, err.toString());
+		}.bind(this)
+	    });
+	}
+    },
     getInitialState: function () {
 	return {"cards": {"set": {}, 
 			  "lists": {"ajout": [], 
@@ -417,7 +470,8 @@ var DoroBox = React.createClass({
 		<div className="colGauche" >
 		    <BiblioBox cards = {this.state.cards}
 		           handleCardSubmit = {this.handleCardSubmit}
-		           handleClickCard = {this.handleClickCard} />
+		           handleClickCard = {this.handleClickCard} 
+		           handleCardDel = {this.handleCardDel} />
 		    <DecksBox decks = {this.state.decks} deckShow = {this.state.deckShow}
 	                   handleDeckAddCard = {this.handleDeckAddCard}
 		           handleDecksAddSubmit = {this.handleDecksAddSubmit} 
@@ -445,6 +499,7 @@ React.render(
       urlDeckAddCard = "deck-add-card"
       urlDeckDropCard = "deck-drop-card"
       urlDeckDel = "deck-del"
+      urlCardDel = "card-del"
       urlData = "data"
       pollInterval = {2000} />,
     document.getElementById("content")

@@ -1,45 +1,41 @@
 {
     "lists": {
         "ajout": [
-            "Blue-EyesWhiteDragon",
-            "Sangan",
-            "TrapHole",
             "LuckyChance",
-            "FlameSwordsman",
-            "Agido"
-        ]
+            "Sangan",
+            "Raigeki"
+        ],
+        "all": [],
+        "magic": [],
+        "monster": [],
+        "trap": []
     },
-    "nb": 6,
+    "nb": 3,
     "set": {
-        "Agido": {
-            "imgExt": "png",
-            "name": "Agido",
-            "url": "http://yugioh.wikia.com/wiki/Agido"
-        },
-        "Blue-EyesWhiteDragon": {
-            "imgExt": "png",
-            "name": "Blue-Eyes White Dragon",
-            "url": "http://yugioh.wikia.com/wiki/Blue-Eyes_White_Dragon"
-        },
-        "FlameSwordsman": {
-            "imgExt": "png",
-            "name": "Flame Swordsman",
-            "url": "http://yugioh.wikia.com/wiki/Flame_Swordsman"
-        },
         "LuckyChance": {
             "imgExt": "png",
             "name": "Lucky Chance",
+            "types": [
+                "Trap Card"
+            ],
             "url": "http://yugioh.wikia.com/wiki/Lucky_Chance"
+        },
+        "Raigeki": {
+            "imgExt": "png",
+            "name": "Raigeki",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Raigeki"
         },
         "Sangan": {
             "imgExt": "png",
             "name": "Sangan",
+            "types": [
+                "Fiend",
+                "Effect"
+            ],
             "url": "http://yugioh.wikia.com/wiki/Sangan"
-        },
-        "TrapHole": {
-            "imgExt": "png",
-            "name": "Trap Hole",
-            "url": "http://yugioh.wikia.com/wiki/Trap_Hole"
         }
     }
 }
