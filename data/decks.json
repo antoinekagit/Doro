@@ -1,13 +1,37 @@
 {
     "list": [
-        "Antoine"
+        "DeckdAntoine"
     ],
     "nb": 1,
     "set": {
-        "Antoine": {
-            "cards": [],
-            "name": "Antoine",
-            "nbcards": 0
+        "DeckdAntoine": {
+            "cards": {
+                "all": [
+                    "Sangan",
+                    "Raigeki",
+                    "LuckyChance",
+                    "SakuretsuArmor"
+                ],
+                "alphabetic": [],
+                "magic": [
+                    "Raigeki"
+                ],
+                "monster": [
+                    "Sangan"
+                ],
+                "trap": [
+                    "LuckyChance",
+                    "SakuretsuArmor"
+                ],
+                "tri": [
+                    "Sangan",
+                    "Raigeki",
+                    "LuckyChance",
+                    "SakuretsuArmor"
+                ]
+            },
+            "name": "Deck d'Antoine",
+            "nbcards": 4
         }
     }
 }

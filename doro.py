@@ -96,13 +96,12 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             except ValueError : pass
 
         for i in d["decks"]["set"] :
-            while True :
-                try : 
-                    d["decks"]["set"][i]["cards"].remove(cardAlias)
-                    d["decks"]["set"][i]["nbcards"] -= 1
-                except ValueError : 
-                    safeprint("yo")
-                    break
+            deck = d["decks"]["set"][i]
+            while cardAlias in deck["cards"]["all"] :
+                deck["nbcards"] -= 1
+                for j in deck["cards"] :
+                    try : deck["cards"][j].remove(cardAlias)
+                    except ValueError : pass
 
         self.saveData()
         self.getData()
@@ -115,47 +114,79 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
         d["decks"]["nb"] -= 1
         del d["decks"]["set"][deckAlias]
-        del d["decks"]["list"][ d["decks"]["list"].index(deckAlias) ]
+        d["decks"]["list"].remove(deckAlias)
 
         self.getDecks()
         self.saveDecks()
 
     def getDeckAddCard (self, params) :
-        deck = params["deck"][0]
-        card = params["card"][0]
+        deckAlias = params["deck"][0]
+        cardAlias = params["card"][0]
         
-        if not deck in d["decks"]["set"]  :
+        if not deckAlias in d["decks"]["set"]  :
             self.send_error(400, "deck inexistant")
             return
         
-        if not card in d["biblio"]["set"] :
+        if not cardAlias in d["biblio"]["set"] :
             self.send_error(400, "carte inexistante")
             return
         
-        if d["decks"]["set"][deck]["cards"].count(card) == 3 :
+        card = d["biblio"]["set"][cardAlias]
+        deck = d["decks"]["set"][deckAlias]
+
+        dejaPris = deck["cards"]["all"].count(cardAlias)
+        
+        if dejaPris == 3 :
             self.send_error(400, "deja trois cartes de ce nom dans ce deck")
             return
-        
-        d["decks"]["set"][deck]["nbcards"] += 1
-        d["decks"]["set"][deck]["cards"].append(card);
-        
+
+        deck["nbcards"] += 1
+        deck["cards"]["all"].append(cardAlias)
+
+        if dejaPris > 0 :
+            if "Trap Card" in card["types"] :
+                i = deck["cards"]["trap"].index(cardAlias)
+                deck["cards"]["trap"].insert(i, cardAlias)
+            elif "Spell Card" in card["types"] :
+                i = deck["cards"]["magic"].index(cardAlias)
+                deck["cards"]["magic"].insert(i, cardAlias)
+            else :
+                i = deck["cards"]["monster"].index(cardAlias)
+                deck["cards"]["monster"].insert(i, cardAlias)
+        else :
+            if "Trap Card" in card["types"] :
+                deck["cards"]["trap"].append(cardAlias)
+            elif "Spell Card" in card["types"] :
+                deck["cards"]["magic"].append(cardAlias)
+            else :
+                deck["cards"]["monster"].append(cardAlias)
+
+        deck["cards"]["tri"] = deck["cards"]["monster"] + deck["cards"]["magic"] + deck["cards"]["trap"]
+
         self.saveDecks()
         self.getDecks()
         
     def getDeckDropCard (self, params) :
-        deck = params["deck"][0]
-        index = int(params["index"][0])
+        deckAlias = params["deck"][0]
+        cardAlias = params["card"][0]
         
-        if not deck in d["decks"]["set"]  :
+        if not deckAlias in d["decks"]["set"]  :
             self.send_error(400, "deck inexistant")
             return
 
-        if index < 0 or index >= len(d["decks"]["set"][deck]["cards"]) :
-            self.send_error(400, "index incorrect")
+        deck = d["decks"]["set"][deckAlias]
+
+        if not cardAlias in deck["cards"]["all"] :
+            self.send_error(400, "carte inexistante dans le deck")
             return;
         
-        d["decks"]["set"][deck]["nbcards"] -= 1
-        del d["decks"]["set"][deck]["cards"][index]
+
+        deck["nbcards"] -= 1
+        for i in deck["cards"] :
+            try : 
+                deck["cards"][i].remove(cardAlias)
+            except ValueError :
+                pass
         
         self.getDecks()
         self.saveDecks()
@@ -168,7 +199,11 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             if alias in d["decks"]["set"] :
                 return  
 
-            deck = {"name": name, "cards": [], "nbcards": 0}
+            deck = {"name": name, "nbcards": 0, "cards": 
+                    {
+                    "all": [], "tri": [], "alphabetic": [],
+                    "monster": [], "magic": [], "trap": [] 
+                    }}
             d["decks"]["nb"] += 1
             d["decks"]["set"][alias] = deck
             d["decks"]["list"].append(alias)

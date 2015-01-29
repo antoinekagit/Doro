@@ -175,7 +175,7 @@ var DeckDropCardZone = React.createClass({
 	if (! data) { return; }
 	if (data.type != "card" || data.from != "deck") { return; }
 
-	this.props.handleDeckDropCard(data.deck, data.index);
+	this.props.handleDeckDropCard(data.deck, data.alias);
     },
     render: function () {
 	return (
@@ -196,7 +196,6 @@ var DeckCard = React.createClass({
 	e.dataTransfer.setData("text", JSON.stringify({"type": "card",
 						       "from": "deck",
 						       "alias": this.props.alias,
-						       "index": this.props.index,
 						       "deck":  this.props.deckAlias}));
     },
     render: function () {
@@ -214,7 +213,7 @@ var DeckCard = React.createClass({
 var DeckShow = React.createClass({
     render: function () {
 	if (this.props.deck) { 
-	    var cards = this.props.deck.cards.map(function (alias, index) {
+	    var cards = this.props.deck.cards.tri.map(function (alias, index) {
 		var card = this.props.cards.set[alias];
 		return (
 		    <DeckCard key={index} alias={alias} deckAlias={this.props.alias} 
@@ -397,10 +396,10 @@ var DoroBox = React.createClass({
 	    }.bind(this)
 	});
     },
-    handleDeckDropCard: function (deck, index) {
+    handleDeckDropCard: function (deck, card) {
 	$.ajax({
 	    url: this.props.urlDeckDropCard,
-	    data: {deck: deck, index: index},
+	    data: {deck: deck, card: card},
 	    dataType: "json",
 	    type: "GET",
 	    success: function (data) {
