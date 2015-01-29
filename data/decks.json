@@ -5,14 +5,9 @@
     "nb": 1,
     "set": {
         "Antoine": {
-            "cards": [
-                "LuckyChance",
-                "Sangan",
-                "Raigeki",
-                "Sangan"
-            ],
+            "cards": [],
             "name": "Antoine",
-            "nbcards": 4
+            "nbcards": 0
         }
     }
 }

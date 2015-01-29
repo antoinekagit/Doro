@@ -238,7 +238,16 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             d["biblio"]["nb"] += 1
             d["biblio"]["set"][alias] = card
             d["biblio"]["lists"]["ajout"].append(alias)
-           
+            
+            if "Trap Card" in types :
+                d["biblio"]["lists"]["trap"].append(alias)
+            elif "Spell Card" in types :
+                d["biblio"]["lists"]["magic"].append(alias)
+            else :
+                d["biblio"]["lists"]["monster"].append(alias)
+
+            d["biblio"]["lists"]["all"] = d["biblio"]["lists"]["monster"] + d["biblio"]["lists"]["magic"] + d["biblio"]["lists"]["trap"]
+
             self.saveBiblio()
             self.getBiblio()
 

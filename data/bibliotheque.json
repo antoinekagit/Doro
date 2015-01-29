@@ -3,14 +3,28 @@
         "ajout": [
             "LuckyChance",
             "Sangan",
+            "Raigeki",
+            "SakuretsuArmor"
+        ],
+        "all": [
+            "Sangan",
+            "Raigeki",
+            "LuckyChance",
+            "SakuretsuArmor"
+        ],
+        "alphabetic": [],
+        "magic": [
             "Raigeki"
         ],
-        "all": [],
-        "magic": [],
-        "monster": [],
-        "trap": []
+        "monster": [
+            "Sangan"
+        ],
+        "trap": [
+            "LuckyChance",
+            "SakuretsuArmor"
+        ]
     },
-    "nb": 3,
+    "nb": 4,
     "set": {
         "LuckyChance": {
             "imgExt": "png",
@@ -27,6 +41,14 @@
                 "Spell Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/Raigeki"
+        },
+        "SakuretsuArmor": {
+            "imgExt": "png",
+            "name": "Sakuretsu Armor",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Sakuretsu_Armor"
         },
         "Sangan": {
             "imgExt": "png",
