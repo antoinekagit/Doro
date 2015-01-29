@@ -52,9 +52,15 @@ var BiblioAdd = React.createClass({
 	this.refs.url.getDOMNode().value = "";
 	return;
     },
+    onFillClick: function (e) {
+	e.preventDefault();
+	this.refs.url.getDOMNode().focus();
+	this.refs.url.getDOMNode().value = "http://yugioh.wikia.com/wiki/";
+    },
     render: function () {
 	return (
 	    <form className="biblioAdd" onSubmit={this.onCardSubmit} >
+		<input type="button" onClick={this.onFillClick} value="@" />
 	        <input type="text" ref="url" placeholder="URL de la carte" />
 		<input type="submit" value="Ajouter" /> <br />
 	    </form>

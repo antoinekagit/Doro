@@ -12,7 +12,8 @@
                     "SakuretsuArmor",
                     "Raigeki",
                     "Sangan",
-                    "Sangan"
+                    "Sangan",
+                    "DarkMagician"
                 ],
                 "alphabetic": [],
                 "magic": [
@@ -20,7 +21,8 @@
                 ],
                 "monster": [
                     "Sangan",
-                    "Sangan"
+                    "Sangan",
+                    "DarkMagician"
                 ],
                 "trap": [
                     "SakuretsuArmor",
@@ -30,6 +32,7 @@
                 "tri": [
                     "Sangan",
                     "Sangan",
+                    "DarkMagician",
                     "Raigeki",
                     "SakuretsuArmor",
                     "SakuretsuArmor",
@@ -37,7 +40,7 @@
                 ]
             },
             "name": "Deck d'Antoine",
-            "nbcards": 6
+            "nbcards": 7
         }
     }
 }

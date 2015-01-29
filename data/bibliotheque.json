@@ -4,14 +4,16 @@
             "LuckyChance",
             "Sangan",
             "Raigeki",
-            "SakuretsuArmor"
+            "SakuretsuArmor",
+            "DarkMagician"
         ],
         "alphabetic": [],
         "magic": [
             "Raigeki"
         ],
         "monster": [
-            "Sangan"
+            "Sangan",
+            "DarkMagician"
         ],
         "trap": [
             "LuckyChance",
@@ -19,13 +21,22 @@
         ],
         "tri": [
             "Sangan",
+            "DarkMagician",
             "Raigeki",
             "LuckyChance",
             "SakuretsuArmor"
         ]
     },
-    "nb": 4,
+    "nb": 5,
     "set": {
+        "DarkMagician": {
+            "imgExt": "png",
+            "name": "Dark Magician",
+            "types": [
+                "Spellcaster"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dark_Magician"
+        },
         "LuckyChance": {
             "imgExt": "png",
             "name": "Lucky Chance",
