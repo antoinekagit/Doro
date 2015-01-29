@@ -1,15 +1,9 @@
 {
     "lists": {
-        "ajout": [
-            "LuckyChance",
-            "Sangan",
-            "SakuretsuArmor",
-            "Raigeki"
-        ],
         "all": [
+            "LuckyChance",
             "Sangan",
             "Raigeki",
-            "LuckyChance",
             "SakuretsuArmor"
         ],
         "alphabetic": [],
@@ -20,6 +14,12 @@
             "Sangan"
         ],
         "trap": [
+            "LuckyChance",
+            "SakuretsuArmor"
+        ],
+        "tri": [
+            "Sangan",
+            "Raigeki",
             "LuckyChance",
             "SakuretsuArmor"
         ]

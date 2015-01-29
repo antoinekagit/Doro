@@ -26,7 +26,7 @@ var BiblioCard = React.createClass({
 
 var BiblioList = React.createClass({
     render: function () {
-	var cards = this.props.cards.lists.all.map(function (alias, index) {
+	var cards = this.props.cards.lists.tri.map(function (alias, index) {
 	    var card = this.props.cards.set[alias];
 	    return (
 		<BiblioCard key={index} alias={alias} card={card} 
@@ -448,8 +448,8 @@ var DoroBox = React.createClass({
     },
     getInitialState: function () {
 	return {"cards": {"set": {}, 
-			  "lists": {"ajout": [], 
-				    "all": [],
+			  "lists": {"all": [], 
+				    "tri": [],
 				    "alphabetic": [],
 				    "monster": [], 
 				    "magic": [], 

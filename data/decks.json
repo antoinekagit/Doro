@@ -7,31 +7,37 @@
         "DeckdAntoine": {
             "cards": {
                 "all": [
-                    "Sangan",
-                    "Raigeki",
+                    "SakuretsuArmor",
                     "LuckyChance",
-                    "SakuretsuArmor"
+                    "SakuretsuArmor",
+                    "Raigeki",
+                    "Sangan",
+                    "Sangan"
                 ],
                 "alphabetic": [],
                 "magic": [
                     "Raigeki"
                 ],
                 "monster": [
+                    "Sangan",
                     "Sangan"
                 ],
                 "trap": [
-                    "LuckyChance",
-                    "SakuretsuArmor"
+                    "SakuretsuArmor",
+                    "SakuretsuArmor",
+                    "LuckyChance"
                 ],
                 "tri": [
                     "Sangan",
+                    "Sangan",
                     "Raigeki",
-                    "LuckyChance",
-                    "SakuretsuArmor"
+                    "SakuretsuArmor",
+                    "SakuretsuArmor",
+                    "LuckyChance"
                 ]
             },
             "name": "Deck d'Antoine",
-            "nbcards": 4
+            "nbcards": 6
         }
     }
 }
