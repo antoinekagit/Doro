@@ -86,7 +86,7 @@ var BiblioCardDelZone = React.createClass({
     },
     render: function () {
 	return (
-	    <h3 className="biblioCardDelZone" 
+	    <h3 className="biblioCardDelZone" title="Déposez des cartes dans cette zone"
 	        onDragOver={this.onDragOver} onDrop={this.onDrop} >
 		<span>Supprimer<br />une carte</span>
 	    </h3>
@@ -186,7 +186,7 @@ var DeckDropCardZone = React.createClass({
     render: function () {
 	return (
 	    <h3 className="deckDropCardZone" onDragOver={this.onDragOver} 
-		onDrop={this.onDrop} >
+		onDrop={this.onDrop} title="Déposez des cartes dans cette zone" >
 		<span>Enlever<br />une carte</span>
 	    </h3>
 	);
@@ -279,7 +279,8 @@ var DeckDelZone = React.createClass({
     },
     render: function () {
 	return (
-	    <h3 className="deckDelZone" onDragOver={this.onDragOver} onDrop={this.onDrop} >
+	    <h3 className="deckDelZone" onDragOver={this.onDragOver} onDrop={this.onDrop} 
+		title="Déposez des cartes dans cette zone" >
 		<span>Supprimer<br />un deck</span>
 	    </h3>
 	);

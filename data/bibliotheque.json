@@ -2,40 +2,278 @@
     "lists": {
         "all": [
             "LuckyChance",
-            "Sangan",
-            "Raigeki",
-            "SakuretsuArmor",
-            "DarkMagician"
+            "BlowbackDragon",
+            "TourofDoom",
+            "FairyBox",
+            "FiendComedian",
+            "JiraiGumo",
+            "Kryuel",
+            "MsJudge",
+            "ThePathsofDestiny",
+            "SandGambler",
+            "SasukeSamurai",
+            "SecondCoinToss",
+            "Twin-BarrelDragon",
+            "AbareUshioni",
+            "GamblerofLegend",
+            "BlindDestruction",
+            "DarkMaster-Zorc",
+            "ContractwiththeDarkMaster",
+            "DiceJar",
+            "DiceRe-Roll",
+            "Dice-nied",
+            "Dicephoon",
+            "FireDarts",
+            "GracefulDice",
+            "NeedleWall",
+            "Number7LuckyStraight",
+            "Number85CrazyBox",
+            "RouletteBarrel",
+            "SkullDice",
+            "SnipeHunter",
+            "ThatSix",
+            "DangerousMachineType-6",
+            "BarrelDragon",
+            "MaximumSix",
+            "TimeWizard",
+            "SwordsofRevealingLight"
         ],
         "alphabetic": [],
         "magic": [
-            "Raigeki"
+            "DangerousMachineType-6",
+            "SecondCoinToss",
+            "ContractwiththeDarkMaster",
+            "Dicephoon",
+            "GracefulDice",
+            "SwordsofRevealingLight"
         ],
         "monster": [
-            "Sangan",
-            "DarkMagician"
+            "BlowbackDragon",
+            "JiraiGumo",
+            "Kryuel",
+            "MsJudge",
+            "SandGambler",
+            "SasukeSamurai",
+            "Twin-BarrelDragon",
+            "AbareUshioni",
+            "GamblerofLegend",
+            "DarkMaster-Zorc",
+            "DiceJar",
+            "Number7LuckyStraight",
+            "Number85CrazyBox",
+            "RouletteBarrel",
+            "SnipeHunter",
+            "BarrelDragon",
+            "MaximumSix",
+            "TimeWizard"
         ],
         "trap": [
             "LuckyChance",
-            "SakuretsuArmor"
+            "TourofDoom",
+            "FairyBox",
+            "FiendComedian",
+            "ThePathsofDestiny",
+            "BlindDestruction",
+            "DiceRe-Roll",
+            "Dice-nied",
+            "FireDarts",
+            "NeedleWall",
+            "SkullDice",
+            "ThatSix"
         ],
         "tri": [
-            "Sangan",
-            "DarkMagician",
-            "Raigeki",
+            "BlowbackDragon",
+            "JiraiGumo",
+            "Kryuel",
+            "MsJudge",
+            "SandGambler",
+            "SasukeSamurai",
+            "Twin-BarrelDragon",
+            "AbareUshioni",
+            "GamblerofLegend",
+            "DarkMaster-Zorc",
+            "DiceJar",
+            "Number7LuckyStraight",
+            "Number85CrazyBox",
+            "RouletteBarrel",
+            "SnipeHunter",
+            "BarrelDragon",
+            "MaximumSix",
+            "TimeWizard",
+            "DangerousMachineType-6",
+            "SecondCoinToss",
+            "ContractwiththeDarkMaster",
+            "Dicephoon",
+            "GracefulDice",
+            "SwordsofRevealingLight",
             "LuckyChance",
-            "SakuretsuArmor"
+            "TourofDoom",
+            "FairyBox",
+            "FiendComedian",
+            "ThePathsofDestiny",
+            "BlindDestruction",
+            "DiceRe-Roll",
+            "Dice-nied",
+            "FireDarts",
+            "NeedleWall",
+            "SkullDice",
+            "ThatSix"
         ]
     },
-    "nb": 5,
+    "nb": 36,
     "set": {
-        "DarkMagician": {
+        "AbareUshioni": {
             "imgExt": "png",
-            "name": "Dark Magician",
+            "name": "Abare Ushioni",
             "types": [
-                "Spellcaster"
+                "Beast-Warrior",
+                "Effect"
             ],
-            "url": "http://yugioh.wikia.com/wiki/Dark_Magician"
+            "url": "http://yugioh.wikia.com/wiki/Abare_Ushioni"
+        },
+        "BarrelDragon": {
+            "imgExt": "png",
+            "name": "Barrel Dragon",
+            "types": [
+                "Machine",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Barrel_Dragon"
+        },
+        "BlindDestruction": {
+            "imgExt": "png",
+            "name": "Blind Destruction",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Blind_Destruction"
+        },
+        "BlowbackDragon": {
+            "imgExt": "png",
+            "name": "Blowback Dragon",
+            "types": [
+                "Machine",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Blowback_Dragon"
+        },
+        "ContractwiththeDarkMaster": {
+            "imgExt": "png",
+            "name": "Contract with the Dark Master",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Contract_with_the_Dark_Master"
+        },
+        "DangerousMachineType-6": {
+            "imgExt": "png",
+            "name": "Dangerous Machine Type-6",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dangerous_Machine_Type-6"
+        },
+        "DarkMaster-Zorc": {
+            "imgExt": "png",
+            "name": "Dark Master - Zorc",
+            "types": [
+                "Fiend",
+                "Ritual",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dark_Master_-_Zorc"
+        },
+        "Dice-nied": {
+            "imgExt": "png",
+            "name": "Dice-nied",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dice-nied"
+        },
+        "DiceJar": {
+            "imgExt": "png",
+            "name": "Dice Jar",
+            "types": [
+                "Rock",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dice_Jar"
+        },
+        "DiceRe-Roll": {
+            "imgExt": "png",
+            "name": "Dice Re-Roll",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dice_Re-Roll"
+        },
+        "Dicephoon": {
+            "imgExt": "png",
+            "name": "Dicephoon",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Dicephoon"
+        },
+        "FairyBox": {
+            "imgExt": "png",
+            "name": "Fairy Box",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Fairy_Box"
+        },
+        "FiendComedian": {
+            "imgExt": "png",
+            "name": "Fiend Comedian",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Fiend_Comedian"
+        },
+        "FireDarts": {
+            "imgExt": "png",
+            "name": "Fire Darts",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Fire_Darts"
+        },
+        "GamblerofLegend": {
+            "imgExt": "png",
+            "name": "Gambler of Legend",
+            "types": [
+                "Spellcaster",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Gambler_of_Legend"
+        },
+        "GracefulDice": {
+            "imgExt": "png",
+            "name": "Graceful Dice",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Graceful_Dice"
+        },
+        "JiraiGumo": {
+            "imgExt": "png",
+            "name": "Jirai Gumo",
+            "types": [
+                "Insect",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Jirai_Gumo"
+        },
+        "Kryuel": {
+            "imgExt": "png",
+            "name": "Kryuel",
+            "types": [
+                "Fiend",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Kryuel"
         },
         "LuckyChance": {
             "imgExt": "png",
@@ -45,30 +283,153 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Lucky_Chance"
         },
-        "Raigeki": {
+        "MaximumSix": {
             "imgExt": "png",
-            "name": "Raigeki",
+            "name": "Maximum Six",
             "types": [
-                "Spell Card"
+                "Warrior",
+                "Effect"
             ],
-            "url": "http://yugioh.wikia.com/wiki/Raigeki"
+            "url": "http://yugioh.wikia.com/wiki/Maximum_Six"
         },
-        "SakuretsuArmor": {
+        "MsJudge": {
             "imgExt": "png",
-            "name": "Sakuretsu Armor",
-            "types": [
-                "Trap Card"
-            ],
-            "url": "http://yugioh.wikia.com/wiki/Sakuretsu_Armor"
-        },
-        "Sangan": {
-            "imgExt": "png",
-            "name": "Sangan",
+            "name": "Ms. Judge",
             "types": [
                 "Fiend",
                 "Effect"
             ],
-            "url": "http://yugioh.wikia.com/wiki/Sangan"
+            "url": "http://yugioh.wikia.com/wiki/Ms._Judge"
+        },
+        "NeedleWall": {
+            "imgExt": "png",
+            "name": "Needle Wall",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Needle_Wall"
+        },
+        "Number7LuckyStraight": {
+            "imgExt": "png",
+            "name": "Number 7: Lucky Straight",
+            "types": [
+                "Fairy",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Number_7:_Lucky_Straight"
+        },
+        "Number85CrazyBox": {
+            "imgExt": "png",
+            "name": "Number 85: Crazy Box",
+            "types": [
+                "Fiend",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Number_85:_Crazy_Box"
+        },
+        "RouletteBarrel": {
+            "imgExt": "png",
+            "name": "Roulette Barrel",
+            "types": [
+                "Machine",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Roulette_Barrel"
+        },
+        "SandGambler": {
+            "imgExt": "png",
+            "name": "Sand Gambler",
+            "types": [
+                "Spellcaster",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Sand_Gambler"
+        },
+        "SasukeSamurai": {
+            "imgExt": "png",
+            "name": "Sasuke Samurai ",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Sasuke_Samurai_4"
+        },
+        "SecondCoinToss": {
+            "imgExt": "png",
+            "name": "Second Coin Toss",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Second_Coin_Toss"
+        },
+        "SkullDice": {
+            "imgExt": "png",
+            "name": "Skull Dice",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Skull_Dice"
+        },
+        "SnipeHunter": {
+            "imgExt": "png",
+            "name": "Snipe Hunter",
+            "types": [
+                "Fiend",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Snipe_Hunter"
+        },
+        "SwordsofRevealingLight": {
+            "imgExt": "png",
+            "name": "Swords of Revealing Light",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Swords_of_Revealing_Light"
+        },
+        "ThatSix": {
+            "imgExt": "png",
+            "name": "That Six",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/That_Six"
+        },
+        "ThePathsofDestiny": {
+            "imgExt": "png",
+            "name": "The Paths of Destiny",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/The_Paths_of_Destiny"
+        },
+        "TimeWizard": {
+            "imgExt": "png",
+            "name": "Time Wizard",
+            "types": [
+                "Spellcaster",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Time_Magician"
+        },
+        "TourofDoom": {
+            "imgExt": "png",
+            "name": "Tour of Doom",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Tour_of_Doom"
+        },
+        "Twin-BarrelDragon": {
+            "imgExt": "png",
+            "name": "Twin-Barrel Dragon",
+            "types": [
+                "Machine",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Twin-Barrel_Dragon"
         }
     }
 }
