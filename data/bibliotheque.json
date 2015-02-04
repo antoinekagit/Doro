@@ -32,20 +32,22 @@
             "SkullDice",
             "SnipeHunter",
             "ThatSix",
-            "DangerousMachineType-6",
             "BarrelDragon",
             "MaximumSix",
             "TimeWizard",
-            "SwordsofRevealingLight"
+            "SwordsofRevealingLight",
+            "DangerousMachineType-6",
+            "GuardianKay39est",
+            "BottomlessShiftingSand"
         ],
         "alphabetic": [],
         "magic": [
-            "DangerousMachineType-6",
             "SecondCoinToss",
             "ContractwiththeDarkMaster",
             "Dicephoon",
             "GracefulDice",
-            "SwordsofRevealingLight"
+            "SwordsofRevealingLight",
+            "DangerousMachineType-6"
         ],
         "monster": [
             "BlowbackDragon",
@@ -65,7 +67,8 @@
             "SnipeHunter",
             "BarrelDragon",
             "MaximumSix",
-            "TimeWizard"
+            "TimeWizard",
+            "GuardianKay39est"
         ],
         "trap": [
             "LuckyChance",
@@ -79,7 +82,8 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix"
+            "ThatSix",
+            "BottomlessShiftingSand"
         ],
         "tri": [
             "BlowbackDragon",
@@ -100,12 +104,13 @@
             "BarrelDragon",
             "MaximumSix",
             "TimeWizard",
-            "DangerousMachineType-6",
+            "GuardianKay39est",
             "SecondCoinToss",
             "ContractwiththeDarkMaster",
             "Dicephoon",
             "GracefulDice",
             "SwordsofRevealingLight",
+            "DangerousMachineType-6",
             "LuckyChance",
             "TourofDoom",
             "FairyBox",
@@ -117,10 +122,11 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix"
+            "ThatSix",
+            "BottomlessShiftingSand"
         ]
     },
-    "nb": 36,
+    "nb": 38,
     "set": {
         "AbareUshioni": {
             "imgExt": "png",
@@ -156,6 +162,14 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Blowback_Dragon"
+        },
+        "BottomlessShiftingSand": {
+            "imgExt": "png",
+            "name": "Bottomless Shifting Sand",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Bottomless_Shifting_Sand"
         },
         "ContractwiththeDarkMaster": {
             "imgExt": "png",
@@ -256,6 +270,15 @@
                 "Spell Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/Graceful_Dice"
+        },
+        "GuardianKay39est": {
+            "imgExt": "png",
+            "name": "Guardian Kay&#39;est",
+            "types": [
+                "Sea Serpent",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Guardian_Kay%27est"
         },
         "JiraiGumo": {
             "imgExt": "png",

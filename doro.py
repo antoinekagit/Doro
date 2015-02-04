@@ -227,7 +227,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             tableCardPattern = "<table class=\"cardtable\">"
             imgPattern = "<td class=\"cardtable-cardimage\" rowspan=\"91\"><a href=\""
             englishPattern = "scope=\"row\">English</th>"
-            typesPattern = "Type"
+            typesPattern = ">Type"
             typesPattern2 = "<td id=\"\" class=\"cardtablerowdata\" style=\";\">"
 
             tableCardStart = html.find(tableCardPattern)
@@ -251,8 +251,10 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
 
             typesStart = html.find(typesPattern, nameEnd) + len(typesPattern)
             typesStart2 = html.find(typesPattern2, typesStart) + len(typesPattern2) + 1
-            typeStart = html.find("<a", typesStart2, typesStart2 + 2) + 2
-
+            typeStart = html.find("<a", typesStart2, typesStart2 + 3) + 2
+            
+            print html[typesStart : typesStart + 200]
+            
             while typeStart != -1 :
                 typeStart = html.find(">", typeStart) + 1
                 typeEnd = html.find("</a>", typeStart)
