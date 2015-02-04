@@ -259,6 +259,10 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
                 types.append(html[typeStart:typeEnd])
                 typeStart = html.find("/<a", typeEnd + 4, typeEnd + 7)
 
+            if len(types[0]) > 100 :
+                self.send_error(400, "erreur de parsage, notifiez admin")
+                return
+
             if alias in d["biblio"]["set"] :
                 self.send_error(400, "déjà dans la bibliothèque")
                 return
