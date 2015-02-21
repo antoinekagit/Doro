@@ -1,15 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import SimpleHTTPServer
-import SocketServer
+import http.server
+import socketserver
 import json
 import webbrowser
 import re
 from os import curdir, sep, remove, listdir
 from threading import Thread
-from urllib2 import urlopen, HTTPError
-from urlparse import urlparse, parse_qs
+from urllib.request import urlopen
+from urllib.error import HTTPError
+from urllib.parse import urlparse, parse_qs
 
 PRINT_INFOS = True # TODO : récupérer la valeur en fonction d'un argument d'exécution
 TYPE_HTML = "text/html"
@@ -19,14 +20,14 @@ TYPE_PNG = "image/png"
 
 def safeprint (m) :
     if PRINT_INFOS :
-        print m
+        print(m)
 
 d = {
     "biblio": json.load(open("data" + sep + "bibliotheque.json")),
     "decks":  json.load(open("data" + sep + "decks.json"))
 }
 
-class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
+class DoroServer (http.server.SimpleHTTPRequestHandler) :
 
     def __init__ (self, request, client_address, server) :
         self.mapRequests = {
@@ -48,7 +49,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             "/data":       self.getData,
             "/card-del":   self.getCardDel
         };
-        SimpleHTTPServer.SimpleHTTPRequestHandler.__init__(self, request, 
+        http.server.SimpleHTTPRequestHandler.__init__(self, request, 
                                                            client_address, server)
 
     def makeheaders (self, code, contenttype = None) :
@@ -60,7 +61,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
     def getJSON (self, j) :
         try :
             self.makeheaders(200, TYPE_JSON)
-            self.wfile.write(json.dumps(j))
+            self.wfile.write(bytes(json.dumps(j), "utf-8"))
         except IOError :
             self.send_error(404, "File not found")
 
@@ -253,7 +254,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
             typesStart2 = html.find(typesPattern2, typesStart) + len(typesPattern2) + 1
             typeStart = html.find("<a", typesStart2, typesStart2 + 3) + 2
             
-            print html[typesStart : typesStart + 200]
+            print(html[typesStart : typesStart + 200])
             
             while typeStart != -1 :
                 typeStart = html.find(">", typeStart) + 1
@@ -306,8 +307,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         closer.start()
 
     def sendFile (self, f) :
-        self.wfile.write(f.read())
-        f.close()
+        self.wfile.write(f)
 
     def getImg (self, params) :
         name = params["name"][0]
@@ -315,7 +315,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         try :
             f = open(curdir + sep + path, "rb")
             self.makeheaders(200, TYPE_PNG)
-            self.sendFile(f)
+            self.sendFile(f.read())
+            f.close()
         except IOError :
             self.send_error(404, "File not found")
 
@@ -323,7 +324,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         try :
             f = open(curdir + sep + "img" + sep + "favicon.png", "rb")
             self.makeheaders(200, TYPE_PNG)
-            self.sendFile(f)
+            self.sendFile(f.read())
+            f.close()
         except IOError :
             self.send_error(404, "File not found")
 
@@ -331,7 +333,8 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         try :
             f = open(curdir + sep + name)
             self.makeheaders(200, contentType)
-            self.sendFile(f)
+            self.sendFile(bytes(f.read(), "utf-8"))
+            f.close()
         except IOError :
             self.send_error(404, "File not found")
 
@@ -346,7 +349,7 @@ class DoroServer (SimpleHTTPServer.SimpleHTTPRequestHandler) :
         
 # end DoroServer
 
-httpd = SocketServer.TCPServer(("", 0), DoroServer)
+httpd = socketserver.TCPServer(("", 0), DoroServer)
 _, port =  httpd.socket.getsockname()
 safeprint("serving at port " + str(port) + " on 127.0.0.1")
 webbrowser.open_new_tab("http://127.0.0.1:" + str(port) + "/doro")

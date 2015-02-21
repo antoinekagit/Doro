@@ -37,8 +37,7 @@
             "TimeWizard",
             "SwordsofRevealingLight",
             "DangerousMachineType-6",
-            "GuardianKay39est",
-            "BottomlessShiftingSand"
+            "GuardianKay39est"
         ],
         "alphabetic": [],
         "magic": [
@@ -82,8 +81,7 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix",
-            "BottomlessShiftingSand"
+            "ThatSix"
         ],
         "tri": [
             "BlowbackDragon",
@@ -122,11 +120,10 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix",
-            "BottomlessShiftingSand"
+            "ThatSix"
         ]
     },
-    "nb": 38,
+    "nb": 37,
     "set": {
         "AbareUshioni": {
             "imgExt": "png",
@@ -162,14 +159,6 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Blowback_Dragon"
-        },
-        "BottomlessShiftingSand": {
-            "imgExt": "png",
-            "name": "Bottomless Shifting Sand",
-            "types": [
-                "Trap Card"
-            ],
-            "url": "http://yugioh.wikia.com/wiki/Bottomless_Shifting_Sand"
         },
         "ContractwiththeDarkMaster": {
             "imgExt": "png",
