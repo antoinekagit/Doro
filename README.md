@@ -10,7 +10,7 @@ Python on local server to manage files
 Instructions
 ============
 
-To launch : Interpret doro.py with Python 2.7. Wait.
+To launch : Interpret doro.py with Python 3.x. Wait.
 
 To quit : Click on "Quitter" then close the tab. Or Close the tab and shutdown doro.py.
 
