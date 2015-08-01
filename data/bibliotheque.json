@@ -37,7 +37,34 @@
             "TimeWizard",
             "SwordsofRevealingLight",
             "DangerousMachineType-6",
-            "GuardianKay39est"
+            "MaraudingCaptain",
+            "SakuretsuArmor",
+            "Twin-SwordMarauder",
+            "TheAForces",
+            "ArmorBreaker",
+            "CalloftheHaunted",
+            "MysticalSpaceTyphoon",
+            "GetsuFuhma",
+            "TheWarriorReturningAlive",
+            "DrillSynchron",
+            "InfectedMail",
+            "ReinforcementoftheArmy",
+            "CommandKnight",
+            "BottomlessTrapHole",
+            "TridentWarrior",
+            "SpellShieldType-8",
+            "RescueWarrior",
+            "SwallowtailButterspy",
+            "DarkHole",
+            "RushRecklessly",
+            "SwiftGaiatheFierceKnight",
+            "BullBlader",
+            "MatazatheZapper",
+            "TheImmortalBushi",
+            "DDAssailant",
+            "TrapJammer",
+            "ZeroGardna",
+            "SevenToolsoftheBandit"
         ],
         "alphabetic": [],
         "magic": [
@@ -46,7 +73,14 @@
             "Dicephoon",
             "GracefulDice",
             "SwordsofRevealingLight",
-            "DangerousMachineType-6"
+            "DangerousMachineType-6",
+            "TheAForces",
+            "MysticalSpaceTyphoon",
+            "TheWarriorReturningAlive",
+            "InfectedMail",
+            "ReinforcementoftheArmy",
+            "DarkHole",
+            "RushRecklessly"
         ],
         "monster": [
             "BlowbackDragon",
@@ -67,7 +101,21 @@
             "BarrelDragon",
             "MaximumSix",
             "TimeWizard",
-            "GuardianKay39est"
+            "MaraudingCaptain",
+            "Twin-SwordMarauder",
+            "ArmorBreaker",
+            "GetsuFuhma",
+            "DrillSynchron",
+            "CommandKnight",
+            "TridentWarrior",
+            "RescueWarrior",
+            "SwallowtailButterspy",
+            "SwiftGaiatheFierceKnight",
+            "BullBlader",
+            "MatazatheZapper",
+            "TheImmortalBushi",
+            "DDAssailant",
+            "ZeroGardna"
         ],
         "trap": [
             "LuckyChance",
@@ -81,7 +129,13 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix"
+            "ThatSix",
+            "SakuretsuArmor",
+            "CalloftheHaunted",
+            "BottomlessTrapHole",
+            "SpellShieldType-8",
+            "TrapJammer",
+            "SevenToolsoftheBandit"
         ],
         "tri": [
             "BlowbackDragon",
@@ -102,13 +156,34 @@
             "BarrelDragon",
             "MaximumSix",
             "TimeWizard",
-            "GuardianKay39est",
+            "MaraudingCaptain",
+            "Twin-SwordMarauder",
+            "ArmorBreaker",
+            "GetsuFuhma",
+            "DrillSynchron",
+            "CommandKnight",
+            "TridentWarrior",
+            "RescueWarrior",
+            "SwallowtailButterspy",
+            "SwiftGaiatheFierceKnight",
+            "BullBlader",
+            "MatazatheZapper",
+            "TheImmortalBushi",
+            "DDAssailant",
+            "ZeroGardna",
             "SecondCoinToss",
             "ContractwiththeDarkMaster",
             "Dicephoon",
             "GracefulDice",
             "SwordsofRevealingLight",
             "DangerousMachineType-6",
+            "TheAForces",
+            "MysticalSpaceTyphoon",
+            "TheWarriorReturningAlive",
+            "InfectedMail",
+            "ReinforcementoftheArmy",
+            "DarkHole",
+            "RushRecklessly",
             "LuckyChance",
             "TourofDoom",
             "FairyBox",
@@ -120,10 +195,16 @@
             "FireDarts",
             "NeedleWall",
             "SkullDice",
-            "ThatSix"
+            "ThatSix",
+            "SakuretsuArmor",
+            "CalloftheHaunted",
+            "BottomlessTrapHole",
+            "SpellShieldType-8",
+            "TrapJammer",
+            "SevenToolsoftheBandit"
         ]
     },
-    "nb": 37,
+    "nb": 64,
     "set": {
         "AbareUshioni": {
             "imgExt": "png",
@@ -133,6 +214,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Abare_Ushioni"
+        },
+        "ArmorBreaker": {
+            "imgExt": "png",
+            "name": "Armor Breaker",
+            "types": [
+                "Warrior",
+                "Union"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Armor_Breaker"
         },
         "BarrelDragon": {
             "imgExt": "png",
@@ -160,6 +250,40 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Blowback_Dragon"
         },
+        "BottomlessTrapHole": {
+            "imgExt": "png",
+            "name": "Bottomless Trap Hole",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Bottomless_Trap_Hole"
+        },
+        "BullBlader": {
+            "imgExt": "png",
+            "name": "Bull Blader",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Bull_Blader"
+        },
+        "CalloftheHaunted": {
+            "imgExt": "png",
+            "name": "Call of the Haunted",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Call_Of_The_Haunted"
+        },
+        "CommandKnight": {
+            "imgExt": "png",
+            "name": "Command Knight",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Command_Knight"
+        },
         "ContractwiththeDarkMaster": {
             "imgExt": "png",
             "name": "Contract with the Dark Master",
@@ -168,6 +292,15 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Contract_with_the_Dark_Master"
         },
+        "DDAssailant": {
+            "imgExt": "png",
+            "name": "D.D. Assailant",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/D.D._Assailant"
+        },
         "DangerousMachineType-6": {
             "imgExt": "png",
             "name": "Dangerous Machine Type-6",
@@ -175,6 +308,14 @@
                 "Spell Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/Dangerous_Machine_Type-6"
+        },
+        "DarkHole": {
+            "imgExt": "png",
+            "name": "Dark Hole",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Black_Hole"
         },
         "DarkMaster-Zorc": {
             "imgExt": "png",
@@ -219,6 +360,16 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Dicephoon"
         },
+        "DrillSynchron": {
+            "imgExt": "png",
+            "name": "Drill Synchron",
+            "types": [
+                "Machine",
+                "Tuner",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Drill_Synchron"
+        },
         "FairyBox": {
             "imgExt": "png",
             "name": "Fairy Box",
@@ -252,6 +403,15 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Gambler_of_Legend"
         },
+        "GetsuFuhma": {
+            "imgExt": "png",
+            "name": "Getsu Fuhma",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Getsu_Fuhma"
+        },
         "GracefulDice": {
             "imgExt": "png",
             "name": "Graceful Dice",
@@ -260,14 +420,13 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Graceful_Dice"
         },
-        "GuardianKay39est": {
+        "InfectedMail": {
             "imgExt": "png",
-            "name": "Guardian Kay&#39;est",
+            "name": "Infected Mail",
             "types": [
-                "Sea Serpent",
-                "Effect"
+                "Spell Card"
             ],
-            "url": "http://yugioh.wikia.com/wiki/Guardian_Kay%27est"
+            "url": "http://yugioh.wikia.com/wiki/Infected_Mail"
         },
         "JiraiGumo": {
             "imgExt": "png",
@@ -295,6 +454,24 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Lucky_Chance"
         },
+        "MaraudingCaptain": {
+            "imgExt": "png",
+            "name": "Marauding Captain",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Marauding_Captain"
+        },
+        "MatazatheZapper": {
+            "imgExt": "png",
+            "name": "Mataza the Zapper",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Mataza_the_Zapper"
+        },
         "MaximumSix": {
             "imgExt": "png",
             "name": "Maximum Six",
@@ -312,6 +489,14 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Ms._Judge"
+        },
+        "MysticalSpaceTyphoon": {
+            "imgExt": "png",
+            "name": "Mystical Space Typhoon",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Mystical_Space_Typhoon"
         },
         "NeedleWall": {
             "imgExt": "png",
@@ -341,6 +526,23 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Number_85:_Crazy_Box"
         },
+        "ReinforcementoftheArmy": {
+            "imgExt": "png",
+            "name": "Reinforcement of the Army",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Reinforcement_of_the_Army"
+        },
+        "RescueWarrior": {
+            "imgExt": "png",
+            "name": "Rescue Warrior",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Rescue_Warrior"
+        },
         "RouletteBarrel": {
             "imgExt": "png",
             "name": "Roulette Barrel",
@@ -349,6 +551,22 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Roulette_Barrel"
+        },
+        "RushRecklessly": {
+            "imgExt": "png",
+            "name": "Rush Recklessly",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Rush_Recklessly"
+        },
+        "SakuretsuArmor": {
+            "imgExt": "png",
+            "name": "Sakuretsu Armor",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Sakuretsu_Armor"
         },
         "SandGambler": {
             "imgExt": "png",
@@ -376,6 +594,14 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Second_Coin_Toss"
         },
+        "SevenToolsoftheBandit": {
+            "imgExt": "png",
+            "name": "Seven Tools of the Bandit",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Seven_Tools_of_the_Bandit"
+        },
         "SkullDice": {
             "imgExt": "png",
             "name": "Skull Dice",
@@ -393,6 +619,32 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Snipe_Hunter"
         },
+        "SpellShieldType-8": {
+            "imgExt": "png",
+            "name": "Spell Shield Type-8",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Spell_Shield_Type-8"
+        },
+        "SwallowtailButterspy": {
+            "imgExt": "png",
+            "name": "Swallowtail Butterspy",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Swallowtail_Butterspy"
+        },
+        "SwiftGaiatheFierceKnight": {
+            "imgExt": "png",
+            "name": "Swift Gaia the Fierce Knight",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Swift_Gaia_the_Fierce_Knight"
+        },
         "SwordsofRevealingLight": {
             "imgExt": "png",
             "name": "Swords of Revealing Light",
@@ -409,6 +661,23 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/That_Six"
         },
+        "TheAForces": {
+            "imgExt": "png",
+            "name": "The A. Forces",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/The_A._Forces"
+        },
+        "TheImmortalBushi": {
+            "imgExt": "png",
+            "name": "The Immortal Bushi",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Immortal_Bushi"
+        },
         "ThePathsofDestiny": {
             "imgExt": "png",
             "name": "The Paths of Destiny",
@@ -416,6 +685,14 @@
                 "Trap Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/The_Paths_of_Destiny"
+        },
+        "TheWarriorReturningAlive": {
+            "imgExt": "png",
+            "name": "The Warrior Returning Alive",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/The_Warrior_Returning_Alive"
         },
         "TimeWizard": {
             "imgExt": "png",
@@ -434,6 +711,23 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Tour_of_Doom"
         },
+        "TrapJammer": {
+            "imgExt": "png",
+            "name": "Trap Jammer",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Trap_Jammer"
+        },
+        "TridentWarrior": {
+            "imgExt": "png",
+            "name": "Trident Warrior",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Trident_Warrior"
+        },
         "Twin-BarrelDragon": {
             "imgExt": "png",
             "name": "Twin-Barrel Dragon",
@@ -442,6 +736,24 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Twin-Barrel_Dragon"
+        },
+        "Twin-SwordMarauder": {
+            "imgExt": "png",
+            "name": "Twin-Sword Marauder",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Twin-Sword_Marauder"
+        },
+        "ZeroGardna": {
+            "imgExt": "png",
+            "name": "Zero Gardna",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Zero_Gardna"
         }
     }
 }
