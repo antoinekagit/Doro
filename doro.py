@@ -223,7 +223,7 @@ class DoroServer (http.server.SimpleHTTPRequestHandler) :
             if not req.geturl().startswith("http://yugioh.wikia.com/wiki/") :
                 self.send_error(400, "mauvais site")
                 return
-            html = req.read()
+            html = req.read().decode("UTF-8")
             
             tableCardPattern = "<table class=\"cardtable\">"
             imgPattern = "<td class=\"cardtable-cardimage\" rowspan=\"91\"><a href=\""
@@ -270,7 +270,7 @@ class DoroServer (http.server.SimpleHTTPRequestHandler) :
                 self.send_error(400, "déjà dans la bibliothèque")
                 return
 
-            imgFile = open("data" + sep + "img" + sep + alias + ".png", "w")
+            imgFile = open("data" + sep + "img" + sep + alias + ".png", "wb")
             imgFile.write(urlopen(img).read())
             imgFile.close()
             
