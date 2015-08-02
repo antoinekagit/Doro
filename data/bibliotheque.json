@@ -64,7 +64,47 @@
             "DDAssailant",
             "TrapJammer",
             "ZeroGardna",
-            "SevenToolsoftheBandit"
+            "SevenToolsoftheBandit",
+            "BladeKnight",
+            "FreedtheMatchlessGeneral",
+            "NinjaGrandmasterSasuke",
+            "Field-CommanderRahz",
+            "KunaiwithChain",
+            "AbsoluteCrusader",
+            "AmazonessSage",
+            "BlueFlameSwordsman",
+            "Cameraclops",
+            "ColossalFighter",
+            "ComicsHeroKingArthur",
+            "ComradeSwordsmanofLandstar",
+            "DiscipleoftheForbiddenSpell",
+            "FreedtheBraveWanderer",
+            "FutureSamurai",
+            "GoyoGuardian",
+            "GravityWarrior",
+            "HammerBounzer",
+            "HeroicChallenger-WarHammer",
+            "HeroicChampion-Excalibur",
+            "HeroicChampion-Gandiva",
+            "GeneralRaihooftheIceBarrier",
+            "HeroicChampion-Kusanagi",
+            "LightrayGearfried",
+            "VentdratheEmpoweredWarrior",
+            "MasteroftheFlamingDragonswords",
+            "Number39Utopia",
+            "Number86HeroicChampion-Rhongomyniad",
+            "PowerBreaker",
+            "BattleguardHowling",
+            "MagnumShield",
+            "SatellarknightAlsahm",
+            "RedSparrowSummoner",
+            "ValkyrianKnight",
+            "UnitedWeStand",
+            "MirrorForce",
+            "WarriorLadyoftheWasteland",
+            "TheHugeRevolutionisOver",
+            "ForbiddenLance",
+            "InfernoRecklessSummon"
         ],
         "alphabetic": [],
         "magic": [
@@ -80,7 +120,11 @@
             "InfectedMail",
             "ReinforcementoftheArmy",
             "DarkHole",
-            "RushRecklessly"
+            "RushRecklessly",
+            "MagnumShield",
+            "UnitedWeStand",
+            "ForbiddenLance",
+            "InfernoRecklessSummon"
         ],
         "monster": [
             "BlowbackDragon",
@@ -115,7 +159,39 @@
             "MatazatheZapper",
             "TheImmortalBushi",
             "DDAssailant",
-            "ZeroGardna"
+            "ZeroGardna",
+            "BladeKnight",
+            "FreedtheMatchlessGeneral",
+            "NinjaGrandmasterSasuke",
+            "Field-CommanderRahz",
+            "AbsoluteCrusader",
+            "AmazonessSage",
+            "BlueFlameSwordsman",
+            "Cameraclops",
+            "ColossalFighter",
+            "ComicsHeroKingArthur",
+            "ComradeSwordsmanofLandstar",
+            "DiscipleoftheForbiddenSpell",
+            "FreedtheBraveWanderer",
+            "FutureSamurai",
+            "GoyoGuardian",
+            "GravityWarrior",
+            "HammerBounzer",
+            "HeroicChallenger-WarHammer",
+            "HeroicChampion-Excalibur",
+            "HeroicChampion-Gandiva",
+            "GeneralRaihooftheIceBarrier",
+            "HeroicChampion-Kusanagi",
+            "LightrayGearfried",
+            "VentdratheEmpoweredWarrior",
+            "MasteroftheFlamingDragonswords",
+            "Number39Utopia",
+            "Number86HeroicChampion-Rhongomyniad",
+            "PowerBreaker",
+            "SatellarknightAlsahm",
+            "RedSparrowSummoner",
+            "ValkyrianKnight",
+            "WarriorLadyoftheWasteland"
         ],
         "trap": [
             "LuckyChance",
@@ -135,7 +211,11 @@
             "BottomlessTrapHole",
             "SpellShieldType-8",
             "TrapJammer",
-            "SevenToolsoftheBandit"
+            "SevenToolsoftheBandit",
+            "KunaiwithChain",
+            "BattleguardHowling",
+            "MirrorForce",
+            "TheHugeRevolutionisOver"
         ],
         "tri": [
             "BlowbackDragon",
@@ -171,6 +251,38 @@
             "TheImmortalBushi",
             "DDAssailant",
             "ZeroGardna",
+            "BladeKnight",
+            "FreedtheMatchlessGeneral",
+            "NinjaGrandmasterSasuke",
+            "Field-CommanderRahz",
+            "AbsoluteCrusader",
+            "AmazonessSage",
+            "BlueFlameSwordsman",
+            "Cameraclops",
+            "ColossalFighter",
+            "ComicsHeroKingArthur",
+            "ComradeSwordsmanofLandstar",
+            "DiscipleoftheForbiddenSpell",
+            "FreedtheBraveWanderer",
+            "FutureSamurai",
+            "GoyoGuardian",
+            "GravityWarrior",
+            "HammerBounzer",
+            "HeroicChallenger-WarHammer",
+            "HeroicChampion-Excalibur",
+            "HeroicChampion-Gandiva",
+            "GeneralRaihooftheIceBarrier",
+            "HeroicChampion-Kusanagi",
+            "LightrayGearfried",
+            "VentdratheEmpoweredWarrior",
+            "MasteroftheFlamingDragonswords",
+            "Number39Utopia",
+            "Number86HeroicChampion-Rhongomyniad",
+            "PowerBreaker",
+            "SatellarknightAlsahm",
+            "RedSparrowSummoner",
+            "ValkyrianKnight",
+            "WarriorLadyoftheWasteland",
             "SecondCoinToss",
             "ContractwiththeDarkMaster",
             "Dicephoon",
@@ -184,6 +296,10 @@
             "ReinforcementoftheArmy",
             "DarkHole",
             "RushRecklessly",
+            "MagnumShield",
+            "UnitedWeStand",
+            "ForbiddenLance",
+            "InfernoRecklessSummon",
             "LuckyChance",
             "TourofDoom",
             "FairyBox",
@@ -201,10 +317,14 @@
             "BottomlessTrapHole",
             "SpellShieldType-8",
             "TrapJammer",
-            "SevenToolsoftheBandit"
+            "SevenToolsoftheBandit",
+            "KunaiwithChain",
+            "BattleguardHowling",
+            "MirrorForce",
+            "TheHugeRevolutionisOver"
         ]
     },
-    "nb": 64,
+    "nb": 104,
     "set": {
         "AbareUshioni": {
             "imgExt": "png",
@@ -214,6 +334,24 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Abare_Ushioni"
+        },
+        "AbsoluteCrusader": {
+            "imgExt": "png",
+            "name": "Absolute Crusader",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Absolute_Crusader"
+        },
+        "AmazonessSage": {
+            "imgExt": "png",
+            "name": "Amazoness Sage",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Amazoness_Sage"
         },
         "ArmorBreaker": {
             "imgExt": "png",
@@ -233,6 +371,23 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Barrel_Dragon"
         },
+        "BattleguardHowling": {
+            "imgExt": "png",
+            "name": "Battleguard Howling",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Battleguard_Howling"
+        },
+        "BladeKnight": {
+            "imgExt": "png",
+            "name": "Blade Knight",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Blade_Knight"
+        },
         "BlindDestruction": {
             "imgExt": "png",
             "name": "Blind Destruction",
@@ -249,6 +404,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Blowback_Dragon"
+        },
+        "BlueFlameSwordsman": {
+            "imgExt": "png",
+            "name": "Blue Flame Swordsman",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Blue_Flame_Swordsman"
         },
         "BottomlessTrapHole": {
             "imgExt": "png",
@@ -275,6 +439,35 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Call_Of_The_Haunted"
         },
+        "Cameraclops": {
+            "imgExt": "png",
+            "name": "Cameraclops",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Cameraclops"
+        },
+        "ColossalFighter": {
+            "imgExt": "png",
+            "name": "Colossal Fighter",
+            "types": [
+                "Warrior",
+                "Synchro",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Colossal_Fighter"
+        },
+        "ComicsHeroKingArthur": {
+            "imgExt": "png",
+            "name": "Comics Hero King Arthur",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Comics_Hero_King_Arthur"
+        },
         "CommandKnight": {
             "imgExt": "png",
             "name": "Command Knight",
@@ -283,6 +476,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Command_Knight"
+        },
+        "ComradeSwordsmanofLandstar": {
+            "imgExt": "png",
+            "name": "Comrade Swordsman of Landstar",
+            "types": [
+                "Warrior",
+                "Tuner"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Comrade_Swordsman_of_Landstar"
         },
         "ContractwiththeDarkMaster": {
             "imgExt": "png",
@@ -360,6 +562,15 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Dicephoon"
         },
+        "DiscipleoftheForbiddenSpell": {
+            "imgExt": "png",
+            "name": "Disciple of the Forbidden Spell",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Disciple_of_the_Forbidden_Spell"
+        },
         "DrillSynchron": {
             "imgExt": "png",
             "name": "Drill Synchron",
@@ -378,6 +589,15 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Fairy_Box"
         },
+        "Field-CommanderRahz": {
+            "imgExt": "png",
+            "name": "Field-Commander Rahz",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Field-Commander_Rahz"
+        },
         "FiendComedian": {
             "imgExt": "png",
             "name": "Fiend Comedian",
@@ -394,6 +614,41 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Fire_Darts"
         },
+        "ForbiddenLance": {
+            "imgExt": "png",
+            "name": "Forbidden Lance",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Forbidden_Lance"
+        },
+        "FreedtheBraveWanderer": {
+            "imgExt": "png",
+            "name": "Freed the Brave Wanderer",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Freed_the_Brave_Wanderer"
+        },
+        "FreedtheMatchlessGeneral": {
+            "imgExt": "png",
+            "name": "Freed the Matchless General",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Freed_the_Matchless_General"
+        },
+        "FutureSamurai": {
+            "imgExt": "png",
+            "name": "Future Samurai",
+            "types": [
+                "Warrior",
+                "Gemini"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Future_Samurai"
+        },
         "GamblerofLegend": {
             "imgExt": "png",
             "name": "Gambler of Legend",
@@ -402,6 +657,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Gambler_of_Legend"
+        },
+        "GeneralRaihooftheIceBarrier": {
+            "imgExt": "png",
+            "name": "General Raiho of the Ice Barrier",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/General_Raiho_of_the_Ice_Barrier"
         },
         "GetsuFuhma": {
             "imgExt": "png",
@@ -412,6 +676,16 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Getsu_Fuhma"
         },
+        "GoyoGuardian": {
+            "imgExt": "png",
+            "name": "Goyo Guardian",
+            "types": [
+                "Warrior",
+                "Synchro",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Goyo_Guardian"
+        },
         "GracefulDice": {
             "imgExt": "png",
             "name": "Graceful Dice",
@@ -420,6 +694,64 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Graceful_Dice"
         },
+        "GravityWarrior": {
+            "imgExt": "png",
+            "name": "Gravity Warrior",
+            "types": [
+                "Warrior",
+                "Synchro",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Gravity_Warrior"
+        },
+        "HammerBounzer": {
+            "imgExt": "png",
+            "name": "Hammer Bounzer",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Hammer_Bounzer"
+        },
+        "HeroicChallenger-WarHammer": {
+            "imgExt": "png",
+            "name": "Heroic Challenger - War Hammer",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Heroic_Challenger_-_War_Hammer"
+        },
+        "HeroicChampion-Excalibur": {
+            "imgExt": "png",
+            "name": "Heroic Champion - Excalibur",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Heroic_Champion_-_Excalibur"
+        },
+        "HeroicChampion-Gandiva": {
+            "imgExt": "png",
+            "name": "Heroic Champion - Gandiva",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Heroic_Champion_-_Gandiva"
+        },
+        "HeroicChampion-Kusanagi": {
+            "imgExt": "png",
+            "name": "Heroic Champion - Kusanagi",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Heroic_Champion_-_Kusanagi"
+        },
         "InfectedMail": {
             "imgExt": "png",
             "name": "Infected Mail",
@@ -427,6 +759,14 @@
                 "Spell Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/Infected_Mail"
+        },
+        "InfernoRecklessSummon": {
+            "imgExt": "png",
+            "name": "Inferno Reckless Summon",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Inferno_Reckless_Summon"
         },
         "JiraiGumo": {
             "imgExt": "png",
@@ -446,6 +786,23 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Kryuel"
         },
+        "KunaiwithChain": {
+            "imgExt": "png",
+            "name": "Kunai with Chain",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Kunai_with_Chain"
+        },
+        "LightrayGearfried": {
+            "imgExt": "png",
+            "name": "Lightray Gearfried",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Lightray_Gearfried"
+        },
         "LuckyChance": {
             "imgExt": "png",
             "name": "Lucky Chance",
@@ -453,6 +810,14 @@
                 "Trap Card"
             ],
             "url": "http://yugioh.wikia.com/wiki/Lucky_Chance"
+        },
+        "MagnumShield": {
+            "imgExt": "png",
+            "name": "Magnum Shield",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Magnum_Shield"
         },
         "MaraudingCaptain": {
             "imgExt": "png",
@@ -462,6 +827,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Marauding_Captain"
+        },
+        "MasteroftheFlamingDragonswords": {
+            "imgExt": "png",
+            "name": "Master of the Flaming Dragonswords",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Master_of_the_Flaming_Dragonswords"
         },
         "MatazatheZapper": {
             "imgExt": "png",
@@ -480,6 +854,14 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Maximum_Six"
+        },
+        "MirrorForce": {
+            "imgExt": "png",
+            "name": "Mirror Force",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Mirror_Force"
         },
         "MsJudge": {
             "imgExt": "png",
@@ -506,6 +888,25 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/Needle_Wall"
         },
+        "NinjaGrandmasterSasuke": {
+            "imgExt": "png",
+            "name": "Ninja Grandmaster Sasuke",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Ninja_Grandmaster_Sasuke"
+        },
+        "Number39Utopia": {
+            "imgExt": "png",
+            "name": "Number 39: Utopia",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Number_39:_Utopia"
+        },
         "Number7LuckyStraight": {
             "imgExt": "png",
             "name": "Number 7: Lucky Straight",
@@ -525,6 +926,34 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Number_85:_Crazy_Box"
+        },
+        "Number86HeroicChampion-Rhongomyniad": {
+            "imgExt": "png",
+            "name": "Number 86: Heroic Champion - Rhongomyniad",
+            "types": [
+                "Warrior",
+                "Xyz",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Number_86:_Heroic_Champion_-_Rhongomiant"
+        },
+        "PowerBreaker": {
+            "imgExt": "png",
+            "name": "Power Breaker",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Power_Breaker"
+        },
+        "RedSparrowSummoner": {
+            "imgExt": "png",
+            "name": "Red Sparrow Summoner",
+            "types": [
+                "Spellcaster",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Red_Sparrow_Summoner"
         },
         "ReinforcementoftheArmy": {
             "imgExt": "png",
@@ -585,6 +1014,15 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Sasuke_Samurai_4"
+        },
+        "SatellarknightAlsahm": {
+            "imgExt": "png",
+            "name": "Satellarknight Alsahm",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Satellarknight_Alsahm"
         },
         "SecondCoinToss": {
             "imgExt": "png",
@@ -669,6 +1107,14 @@
             ],
             "url": "http://yugioh.wikia.com/wiki/The_A._Forces"
         },
+        "TheHugeRevolutionisOver": {
+            "imgExt": "png",
+            "name": "The Huge Revolution is Over",
+            "types": [
+                "Trap Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/The_Huge_Revolution_is_Over"
+        },
         "TheImmortalBushi": {
             "imgExt": "png",
             "name": "The Immortal Bushi",
@@ -745,6 +1191,41 @@
                 "Effect"
             ],
             "url": "http://yugioh.wikia.com/wiki/Twin-Sword_Marauder"
+        },
+        "UnitedWeStand": {
+            "imgExt": "png",
+            "name": "United We Stand",
+            "types": [
+                "Spell Card"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/United_We_Stand"
+        },
+        "ValkyrianKnight": {
+            "imgExt": "png",
+            "name": "Valkyrian Knight",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Valkyrian_Knight"
+        },
+        "VentdratheEmpoweredWarrior": {
+            "imgExt": "png",
+            "name": "Ventdra, the Empowered Warrior",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Magiquipped_Warrior_Ventdra"
+        },
+        "WarriorLadyoftheWasteland": {
+            "imgExt": "png",
+            "name": "Warrior Lady of the Wasteland",
+            "types": [
+                "Warrior",
+                "Effect"
+            ],
+            "url": "http://yugioh.wikia.com/wiki/Warrior_Lady_of_the_Wasteland"
         },
         "ZeroGardna": {
             "imgExt": "png",
